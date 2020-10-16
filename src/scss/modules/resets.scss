@@ -1,0 +1,23 @@
+ /* ############################################################################################### */
+ /*                                                RESETS                                           */
+ /* ############################################################################################### */
+ .bbpress h1 {
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+#bbpress-forums p {
+    margin: 0;
+}
+body.admin-bar .site {
+    margin-top: 32px;
+}
+@media screen and (max-width: 782px) {
+    body.admin-bar .site {   
+        margin-top: 46px;
+    }
+}

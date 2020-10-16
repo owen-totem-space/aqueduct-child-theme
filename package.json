@@ -1,0 +1,47 @@
+{
+  "name": "aqueduct-child",
+  "version": "1.0.0",
+  "description": "developent wordpress child theme",
+  "main": "index.js",
+  "author": "Owen McCarthy",
+  "license": "MIT",
+  "scripts": {
+    "build:scripts": "wp-scripts build",
+    "start-build": "wp-scripts start"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@wordpress/babel-preset-default": "^4.19.0",
+    "@wordpress/browserslist-config": "^2.7.0",
+    "@wordpress/scripts": "^12.3.0",
+    "browser-sync": "^2.26.12",
+    "browserslist": "^4.14.5",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "postcss": "^8.1.1",
+    "postcss-cli": "^8.1.0",
+    "postcss-preset-env": "^6.7.0"
+  },
+  "browserslist": [
+    "defaults",
+    "extends @wordpress/browserslist-config"
+  ],
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@wordpress/default"
+    ]
+  }
+}

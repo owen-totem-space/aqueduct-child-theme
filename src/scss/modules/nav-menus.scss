@@ -1,0 +1,313 @@
+/* ################################################################################################### */
+/*                                      Primary Nav Menu                                               */
+/* ################################################################################################### */
+.main-navigation ul li a{
+    color: #cecece;
+    opacity: 0.8;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    border-left: 2px solid transparent;
+    transition: 
+        color 200ms ease-out,
+        opacity 200ms ease-out;  
+}
+.main-navigation ul li:hover,
+.main-navigation ul .current-menu-item {
+    background-color: transparent !important;
+}
+.main-navigation ul li:hover a {
+    color:#cecece;
+}
+.main-navigation ul li a:hover {
+    color: #43AD60;
+    border-left: 2px solid #43AD60;
+    background-color: transparent !important;
+    transition: border-left 200ms ease-out;
+}
+.main-navigation ul ul li a {
+    transition: 
+        color 200ms ease-out,
+        opacity 200ms ease-out,
+        border-left 200ms ease-out;
+}
+@media only screen and (min-width: 971px){
+    .main-navigation ul ul {
+        background:transparent !important;
+        box-shadow: -1px 2px 4px 0px rgba(0,0,0, 0.3);
+    }
+    .main-navigation ul li:hover ul li {
+        background-color: var(--bg2)!important;
+    }
+    .main-navigation ul li {
+        position: relative;
+    }
+    .main-navigation ul li > ul {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+    }
+    .main-navigation ul li:hover > ul{
+        max-height: 600px;
+        opacity: 1;
+        transition: 
+            max-height 350ms ease-in 25ms;
+    }
+    .main-navigation ul li:hover > ul li {
+        max-height: 90px;
+        opacity: 1;
+        transition: 
+            max-height 350ms ease-in 50ms;
+    }
+    .main-navigation ul li ul > li {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+    }
+    .drag-navbar {
+        margin-bottom: 8px;
+        box-shadow: 0px 2px 4px 1px rgba(0,0,0, 0.3);
+    }
+}
+
+/* ################################################################################################### */
+/*                                             SIDEMENU NAV                                            */
+/* ################################################################################################### */
+.placeholder {
+    display: none;
+}
+.page-container {
+    position: relative;
+    height: 100%;
+}
+header#masthead {
+    padding-top: 12px;
+}
+@media only screen and (max-width:970px){
+    header#masthead {
+        padding-top: 16px;
+    }
+    .drag-social-button-best {
+        display: none;
+    }
+    .drag-navbar {
+        position: absolute;
+        height: 100%;
+        width: 0;
+        overflow: hidden;
+        display: block;
+        z-index: 9000;
+        right: 0px;
+        white-space: nowrap;
+        background-color: #262626;
+        overflow-y: auto;
+        transition: 
+            width 400ms cubic-bezier(0.7, 0.07, 0.27, 1),
+            box-shadow 400ms cubic-bezier(0.7, 0.07, 0.27, 1);
+    }
+    .drag-navbar.active {
+        max-width: 70%;
+        width: 60%;
+        border-left: 1px solid rgba(0,0,0, 0.2);
+        box-shadow: 0 0 200px 100px rgba(0, 0, 0, 0.5),
+                    0 0 8px 12px rgba(0, 0, 0, 0.14);
+    }
+    .drag-navbar .container {
+        height: auto;
+        margin: 0;
+    }
+    .main-navigation {
+        float: none;
+        display: flex;
+        flex-direction: column;
+        width: unset;
+        text-align: left;
+        margin-top: 64px;
+    }
+    .main-navigation ul {
+        position: unset;
+        display:block;
+        width: 100%;
+    }
+    .main-navigation ul li {
+        float: none;
+        border-bottom: 1px solid #181818;
+        cursor: pointer;
+    }
+    .main-navigation ul > li > a{
+        padding: 0;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        padding-left: 16px;
+        line-height: 1.2;
+        font-size: 1rem;
+        font-weight: 400;
+        opacity: 0.8;
+        color: #cecececc;
+    }
+    .main-navigation ul ul {
+        width: unset;
+        position: initial;
+        visibility: visible;
+        background: transparent !important;
+        width: 100%;
+        max-height:0;
+        overflow: hidden;
+        box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.3);
+        transition: 
+            max-height 400ms cubic-bezier(0.7, 0.07, 0.27, 1);
+    }
+    .main-navigation ul ul li {
+        border: none;
+        width: 100%;
+        overflow-x: hidden;
+    }
+    .main-navigation ul ul li:first-child{
+        padding-top: 12px;
+    }
+    .main-navigation ul ul li:last-child{
+        padding-bottom: 12px;
+    }
+    .main-navigation ul ul a {
+        width: 100%;
+        font-size: 0.9rem;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-left: 24px;
+    }
+    .placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 48px;
+        width: 48px; 
+        background-color: var(--btnBg);
+        position: absolute;
+        top: 32px;
+        right: 24px;
+        overflow: hidden;
+        z-index: 10000;
+        border-radius: 8px;
+        padding: 8px;
+        cursor: pointer;
+        transition: 
+            background-color 400ms ease;
+    }
+    .placeholder.active{
+        background-color: transparent;
+    }
+    #toggleBtn {
+        position: relative;
+        width: 100%;
+        height: 4px;
+        background-color: var(--btnTxt );
+        transition: 
+            transform 275ms ease-out 20ms;
+    }
+    #toggleBtn::before,
+    #toggleBtn::after{
+        content: "";
+        position: absolute;
+        top: -10px;
+        width: 100%;
+        height: 4px;
+        background-color: var(--btnTxt );
+    }
+    #toggleBtn::after{
+        top: 10px;
+    }
+    #toggleBtn.active{
+        transform: rotate(135deg);
+    }
+    #toggleBtn.active > .placeholder {
+        background-color: transparent;
+    }
+    #toggleBtn.active::before,
+    #toggleBtn.active::after{
+        top: 0;
+        transform: rotate(90deg);
+    }
+    #toggleBtn.active::before {
+        opacity: 0;
+    }
+    .searchboxcontainer {
+        display: none;
+    }
+    #menu-main-menu{
+        flex-direction: column;
+    }
+    .visible {
+        max-height: 400px !important;
+        visibility: visible !important;
+    }
+    .closed {
+        max-height: 0;
+        overflow: hidden;
+    }
+}
+@media only screen and (max-width: 530px){
+    .placeholder{
+        top: 28px;
+    }
+}
+@media only screen and (max-width: 360px){
+    .drag-navbar.active {
+        max-width: 80%;
+        width: 80%;
+    }
+}
+/* ################################################################################################### */
+/*                                      Secondary Nav Menu                                             */
+/* ################################################################################################### */
+.menu-footer {
+    box-shadow: 0 2px 4px -2px rgba(0,0,0, 0.25);
+    border-radius: 5px;
+}
+.menu-footer > ul > li > a,
+.menu-footer ul ul li a {
+    color: var(--nav2);
+}
+.menu-footer > ul > li > a {
+    opacity: 0.8;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    border-left: 2px solid transparent;
+    transition: 
+        border-left 200ms ease,
+        color 200ms ease;
+}
+.menu-footer > ul > li > a:hover{
+    border-left: 2px solid #43AD60;
+    color: #43AD60;
+}
+.menu-footer ul ul li a{
+    opacity: 0.8;
+    letter-spacing: 1.5px;
+    border-top: none;
+    text-transform: uppercase;
+    width: 230px;
+    border-left: 2px solid transparent;
+    padding-left: 20px;
+    font-size: 12px;
+    transition: 
+        border-left 200ms ease,
+        color 200ms ease;
+}
+.menu-footer ul ul li a:hover {
+    border-left: 2px solid #43AD60;
+}
+.menu-footer li:hover > ul > li,
+.menu-footer .menu li:hover > ul > li{
+    height: 35px;
+}
+.menu-footer ul ul{
+    background-color: var(--bg4);
+    overflow: hidden;
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0, 0.2);
+
+}
+.menu-footer ul ul li {
+    transition: all 250ms ease-in 25ms;
+}
+#tinynav1 option:nth-of-type(1) {
+    display: none;
+}

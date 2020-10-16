@@ -1,0 +1,76 @@
+/* ################################################################################################### */
+ /*                                       Accordion                                                 */
+ /* ################################################################################################### */
+ .minimalAccordion {
+    min-height: 240px;
+    padding-bottom: 32px;
+}
+.minimalAccordion.fullpage{
+    padding-top: 16px
+}
+.fullpage .accordion-title {
+    justify-content: left;
+}
+.accordion-parent-title h2{
+    margin-bottom: 0;
+}
+.accordion-parent-content p{
+    margin: 0;
+    padding: 8px 16px;
+}
+.accordion-title{
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+    justify-content: center;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #262626;
+    border-top: 1px solid #262626;
+    border-left: 2px solid transparent;
+    transition: 
+        border-left 200ms ease-out,
+        color 200ms ease-out,
+        box-shadow 200ms ease-out;
+}
+.accordion-title:focus,
+.accordion-title:hover{
+    outline: none;
+    box-shadow: 0 0px 8px 0px #43ad5f23;
+    border-left: 2px solid #43AD60;
+}
+.accordion-title:hover,
+.accordion-title:focus {
+    outline: none;
+    color: #43AD60;
+}
+.accordion-title > div{
+    display: flex;
+    flex-basis: 100%;
+    justify-content: space-between;
+    padding-bottom: 4px;
+}
+.accordion-title .title-text,
+.accordion-title .accordion-arrow {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+.minimalAccordion .content {
+    padding: 0px 16px 0px 16px;
+    margin-bottom: 4px;
+}
+.minimalAccordion .ui-accordion-content{
+    overflow: auto;
+}
+.accordion-title .accordion-arrow{
+    transition: transform 250ms ease-out;
+}
+.accordion-title.ui-state-active .accordion-arrow {
+    transform: rotate(180deg);
+}
+@media only screen and (min-width: 530px){
+    .minimalAccordion.responsive {
+        display:none;
+    } 
+}

@@ -1,0 +1,259 @@
+
+ /* ############################################################################################ */
+ /*                                     General Font Sizing                                     */
+ /* ############################################################################################ */
+ html,
+ textarea {
+     font-family:
+         'Segoe UI', 
+         'Roboto', 
+         sans-serif !important;
+     letter-spacing: 0.5px;
+     font-weight: 400;
+     line-height: 1.6;
+ }
+ .hentry h1, .hentry h2 {
+     line-height: 1.4;
+     font-size: 2rem;
+     font-weight: 600;
+ }
+ .hentry {
+     font-size: 1rem;
+ }
+
+ .main-navigation ul ul li a{
+     text-transform: uppercase;
+     font-size: 0.8rem;
+ }
+ 
+ /* ########################################################################################################### */
+ /*                                                Font Colors                                                  */
+ /* ########################################################################################################### */
+ body, 
+ input, 
+ select, 
+ textarea,
+ .menu-footer ul ul li a {
+     color: var(--txt1);
+ }
+ .entry-content {
+     color: var(--txt1)!important;
+ }
+ body a, 
+ .reply a, 
+ .comments-area article a,
+ .nav-links a,
+ .logged-in-as a,
+ .hentry h2 a,
+ .hentry .entry-meta a,
+ .blogposts a,
+ #carouselpost h2 a,
+ .blog-content-hldr a {
+     color: var(--txt2);
+ }
+ input[type="text"]:focus, 
+ input[type="email"], 
+ input[type="url"], 
+ input[type="password"], 
+ input[type="password"]:focus, 
+ input[type="search"],
+ textarea:focus,
+ input.search-field:focus {
+     color: var(--txt2);
+ }
+ .site-title a {
+     color: var(--txt3);
+ }
+ .widget-title {
+     color: #cecece;
+ }
+ .widget_categories a:hover {
+     color: #fff;
+ }
+ h3.widget-title {
+     color: #cecece;
+     letter-spacing: 1px;
+ }
+ 
+ /* ################################################################################################# */
+ /*                                       Background Colors                                           */
+ /* ################################################################################################# */
+ body, 
+ header#masthead,
+ #secondary.widget-area,
+ textarea,
+ input[type="text"], 
+ input[type="email"], 
+ input[type="url"], 
+ input[type="password"], 
+ input[type="search"],
+ .comments-area article,
+ select {
+     background-color: var(--bg1);
+ }
+ .drag-navbar, 
+ .site-footer, 
+ .three-column-footer, 
+ h3.widget-title, 
+ .main-navigation .tinynav,
+ .titlecatholder,
+ .srchcontainerin {
+     background-color: var(--bg2);
+ }
+
+
+ .menu-footer ul ul li a  {
+     background-color: var(--bg4);
+ }
+
+
+ .archive-description {
+     background-color: var(--bg5)
+ }
+ .secondary-navigation-center, 
+ .secondary-navigation-best {
+     background-color: var(--bg4);
+ }
+
+ input[type="submit"]:hover,
+ input[type="button"]:hover,
+ input[type="reset"]:hover,
+ button:hover {
+     background-color: #0F73B8;
+ }
+ .widget_categories li:hover {
+     background: #0F73B8;
+ }
+ /* ############################################################################################### */
+ /*                                 Border Colors and adjustments                                   */
+ /* ############################################################################################### */
+ 
+ .hentry {
+     border: none;
+ }
+ .grid-posts-holder {
+     border-bottom: var(--border3)
+ }
+ #primary.content-area {
+     border-right: none;
+ }
+
+ input[type="text"], 
+ input[type="email"], 
+ input[type="url"], 
+ input[type="password"], 
+ input[type="search"],
+ textarea,
+ .comments-area article,
+
+ fieldset {
+     border : var(--border5)
+ }
+ fieldset{
+    border-radius: 5px;
+}
+ .post-navss,
+ .comment-meta,
+ #carouselpost,
+ .blog-cnt-holder,
+ .simple-posts article {
+     border-bottom: var(--border5)
+ }
+ .wp-editor-container {
+     border: var(--border5)!important;
+ }
+
+ .widget-title {
+     border-radius: 5px
+ }
+ .secondary-navigation, .tinynav.tinynav1 {
+     border-radius: 5px;
+ }
+
+ .searchboxcontainer,
+ .titlecatholder,
+ .titlecatholder span,
+ .archive-description {
+     border-radius: 5px;
+ }
+
+ input[type="button"], 
+ input[type="reset"], 
+ input[type="submit"] {
+     border-radius: 5px;
+     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+ }
+ input[type="text"], 
+ input[type="email"], 
+ input[type="url"],
+ input[type="password"], 
+ input[type="search"], 
+ textarea {
+      border-radius: 5px;
+ }
+ 
+ /* ################################################################################################# */
+ /*                                        Fixes and styling                                          */
+ /* ################################################################################################# */
+ .site-content {
+     min-height: 36em;
+ }
+ /* .site-branding-best .site-title{
+     padding-top: 1.5rem;
+ } */
+
+ .site-branding-best{
+     width: 40%; 
+ }
+ .drag-social-button-best{
+     float: right;
+     width: 40%;
+ }
+ .drag-social-button-best ul{
+     float: right;
+ }
+ .drag-social-button-best ul li a{
+     border-radius: 5px;
+ }
+ .comments-area article {
+     overflow-y: hidden;
+ }
+ .menu-footer{
+     z-index: 5000;
+ }
+ .main-navigation ul{
+     z-index: 6000;
+ }
+ #loginform input[type=text], 
+ #loginform input[type=password] {
+     width: 70%;
+ }
+ .widget-title {
+     margin-bottom: 8px;
+ }
+ .post-type-archive #secondary.widget-area,
+ .single #secondary.widget-area,
+ .page #secondary.widget-area {
+     padding-top: 88px;
+ }
+ .post-template-default #secondary.widget-area {
+     padding-top: 88px;
+ }
+ .page-template-tabs #secondary.widget-area,
+ .page-template-accordion #secondary.widget-area{
+     padding-top: 64px;
+ }
+
+ .entry-footer,
+ .post-navss {
+     padding-left: 8px;
+     padding-right: 8px;
+ }
+ .read-more-button a{
+     border-radius: 5px;
+ }
+ .srchcontainerin {
+     box-shadow: -2px 2px 4px 0px rgba(0,0,0, 0.3);
+ }
+ 
+ 

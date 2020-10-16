@@ -1,0 +1,21 @@
+ /* ################################################################################################### */
+ /*                                     WP Block Table                                                  */
+ /* ################################################################################################### */
+ .wp-block-table {
+    margin-left: 0;
+    margin-right: 0;
+}
+.wp-block-table.is-style-regular th,
+.wp-block-table.is-style-regular td {
+    padding: 4px 8px;
+}
+.wp-block-table.is-style-regular > table,
+.wp-block-table.is-style-regular tbody,
+.wp-block-table.is-style-regular th,
+.wp-block-table.is-style-regular td,
+.wp-block-table.is-style-regular tr {
+    border: var(--border5);
+}
+.wp-block-table.is-style-stripes tbody tr:nth-child(odd){
+    background-color: var(--bg5);
+}
