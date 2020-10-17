@@ -69,3 +69,19 @@ function load_litebox_footer(){
     wp_enqueue_script('responsive-lightbox-swipebox',  plugins_url() . ('/responsive-lightbox/assets/swipebox/jquery.swipebox.min.js'), array('jQuery'), '', true);
 }
 add_action( 'wp_enqueue_scripts', 'load_litebox_footer' );
+
+
+
+// #######################################################################################################
+//                            Add pluginUpdateChecker
+// #######################################################################################################
+
+require 'plugin-update-checker/plugin-update-checker.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+	'https://github.com/owen-totem-space/aqueduct-child-theme/',
+	__FILE__,
+	'aqueduct-child-theme'
+);
+
+// Optional: Set the branch that contains the stable release.
+$myUpdateChecker->setBranch('main');
