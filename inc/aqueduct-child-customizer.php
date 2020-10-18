@@ -6,51 +6,109 @@
  * Add custom sections and settings to the Customizer.
  *
  */
+
 class Aqueduct_Child_Customizer {
+
+/**
+ * 
+ *Variables
+ * 
+ *
+ */
+
+    public static $font_array = array(
+        ''                      => 'None',
+        'fa fa-home'            => 'Home',
+        'fa fa-bed'             => 'Bed',
+        'fa fa-user-secret'     => 'User Secret',
+        'fa fa-eur'             => 'Euro',
+        'fa fa-graduation-cap'  => 'Graduation Cap',
+        'fa fa-info-circle'     => 'Info Cirlce',
+        'fa fa-envelope-o'      => 'Email',
+        'fa fa-users'           => 'Users',
+        'fa fa-plane'           => 'Plane',
+        'fa fa-book'            => 'Book',
+        'fa fa-thumbs-up'       => 'Thumbs Up'
+    );
+
+
+
 	
 	public function __construct() {
 
         add_action( 'customize_register', array( $this, 'register_customize_sections' ) );
     }
 
+
+
+
+
     public function register_customize_sections( $wp_customize ) {
-    // ###############################################################################################
-    //                      Homepage Contents Section
-    // ###############################################################################################
+
+/**
+ * 
+ *
+ * Homepage Panel and Sections
+ * 
+ *
+ */
+        $wp_customize->add_panel( 'imc-homepage', array(
+            'title'    => __( 'IMC Homepage' ),
+            'priority' => 12, // Mixed with top-level-section hierarchy.
+        ) );
+
         $wp_customize->add_section( 'homepage_content', array(
-            'title'    => __( 'IMC Homepage', 'aqueduct-child' ),
-            'priority' => 11
+            'title'    => __( 'Content' ),
+            'panel'    => 'imc-homepage',
+            'priority' => 20
+        ) );
+
+        $wp_customize->add_section( 'homepage_buttons', array(
+            'title'    => __( 'Buttons' ),
+            'panel'    => 'imc-homepage',
+            'priority' => 30
+        ) );
+
+        $wp_customize->add_section( 'homepage_bgimg', array(
+            'title'    => __( 'Homepage Image' ),
+            'panel'    => 'imc-homepage',
+            'priority' => 40
         ) );
     
         $this->homepage_content_section( $wp_customize );
-        $this->subtext_content_section( $wp_customize );
-        $this->welcome_content_section( $wp_customize );
-        $this->button_content_section( $wp_customize );
-        $this->button_link_section( $wp_customize );
-        $this->button_content2_section( $wp_customize );
-        $this->button_link2_section( $wp_customize );
-        $this->show_button2_section( $wp_customize );
-        $this->button_content3_section( $wp_customize );
-        $this->button_link3_section( $wp_customize );
-        $this->show_button3_section( $wp_customize );
 
-    // ###############################################################################################
-    //                      Emergency Announcement Section
-    // ###############################################################################################
+        $this->homepage_bgimg_section( $wp_customize );
+
+
+
+
+/**
+ * 
+ *
+ * Emergency Announcement Section
+ * 
+ *
+ */
         $wp_customize->add_section( 'emergency_announcement', array(
             'title'    => __( 'IMC Emergency Announcement', 'aqueduct-child' ),
             'priority' => 10
         ) );
     
         $this->emergency_announcement_section( $wp_customize );
-        $this->show_announcement_section( $wp_customize );
 
-    // ###############################################################################################
-    //                      Footer Contents Section
-    // ###############################################################################################
+
+
+
+/**
+ * 
+ *
+ * Footer Panel and Sections
+ * 
+ *
+ */
     
         $wp_customize->add_panel( 'imc-footer', array(
-            'title' => __( 'IMC Footer', 'aqueduct'),
+            'title'    => __( 'IMC Footer', 'aqueduct-child'),
             'priority' => 12, // Mixed with top-level-section hierarchy.
         ) );
         
@@ -80,42 +138,50 @@ class Aqueduct_Child_Customizer {
     
 
     }
-    // ###############################################################################################
-    //                      Homepage Contents Options
-    // ###############################################################################################
+
+    
+
+
+
+/**
+ * 
+ *
+ * Homepage Settings
+ * 
+ *
+ */
+
     private function homepage_content_section( $wp_customize ) {
 
         $wp_customize->add_setting( 'site_title', array(
             'default'           => 'Irish Mountaineering Club',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_text_field'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'site_title', array(
-            'label'       => esc_html__( 'Add Homepage Title', 'aqueduct-child' ),
+            'label'       => esc_html__( 'Homepage Title', 'aqueduct-child' ),
             'section'     => 'homepage_content',
             'settings'    => 'site_title',
             'type'        => 'text',
             'priority'    => 10
         ) ) );    
-    }
-    private function subtext_content_section( $wp_customize ) {
+ 
 
         $wp_customize->add_setting( 'subtext', array(
             'default'           => 'Established 1942',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_text_field'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'subtext', array(
-            'label'       => esc_html__( 'Add Subtext', 'aqueduct-child' ),
+            'label'       => esc_html__( 'Subtext', 'aqueduct-child' ),
             'section'     => 'homepage_content',
             'settings'    => 'subtext',
             'type'        => 'text',
             'priority'    => 11
         ) ) );    
-    }
-    private function welcome_content_section( $wp_customize ) {
+    
 
         $wp_customize->add_setting( 'welcome_content', array(
             'default'           => 'Welcome to the IMC',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_text_field'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'welcome_content', array(
             'label'       => esc_html__( 'Welcome Message', 'aqueduct-child' ),
@@ -124,159 +190,196 @@ class Aqueduct_Child_Customizer {
             'type'        => 'text',
             'priority'    => 12
         ) ) );    
-    }
-    // ###############################################################################################
-    //                      Homepage Button 1 Options
-    // ###############################################################################################
-    private function button_content_section( $wp_customize ) {
 
-        $wp_customize->add_setting( 'button_content', array(
+
+
+
+/**
+ * 
+ *
+ * Homepage Button 1
+ * 
+ *
+ */
+        $wp_customize->add_setting( 'button1_content', array(
             'default'           => 'Log In',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_text_field'
         ) );
-        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'button_content', array(
-            'label'       => esc_html__( 'Button 1 Text', 'aqueduct-child' ),
-            'description' => esc_html__( 'Text to show on Button', 'aqueduct-child' ),
-            'section'     => 'homepage_content',
-            'settings'    => 'button_content',
+        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'button1_content', array(
+            'label'       => esc_html__( 'Button 1 Label', 'aqueduct-child' ),
+            'section'     => 'homepage_buttons',
+            'settings'    => 'button1_content',
             'type'        => 'text',
             'priority'    => 13
         ) ) );    
-    }
-    private function button_link_section( $wp_customize ) {
+ 
 
-        $wp_customize->add_setting( 'button_link', array(
+        $wp_customize->add_setting( 'button1_link', array(
             'default'           => '',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'esc_url_raw'
         ) );
-        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'button_link', array(
+        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'button1_link', array(
             'label'       => esc_html__( 'Button 1 Link', 'aqueduct-child' ),
             'description' => esc_html__( 'Paste link for button', 'aqueduct-child' ),
-            'section'     => 'homepage_content',
-            'settings'    => 'button_link',
-            'type'        => 'text',
+            'section'     => 'homepage_buttons',
+            'settings'    => 'button1_link',
+            'type'        => 'url',
             'priority'    => 14
         ) ) );
-    }
-    // ###############################################################################################
-    //                      Homepage Button 2 Options
-    // ###############################################################################################
-    private function show_button2_section( $wp_customize ) {
 
+
+        
+
+/**
+ * 
+ *
+ * Homepage Button 2
+ * 
+ *
+ */
 		$wp_customize->add_setting( 'show_button2', array(
 			'default'           => false,
-			'sanitize_callback' => array( $this, 'sanitize_checkbox' )
+			'sanitize_callback' => array($this, 'sanitize_checkbox')
 		) );
 		$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'show_button2', array(
 			'label'       => esc_html__( 'Show button 2', 'aqueduct-child' ),
 			'description' => esc_html__( '', 'aqueduct-child' ),
-			'section'     => 'homepage_content',
+			'section'     => 'homepage_buttons',
 			'settings'    => 'show_button2',
 			'type'        => 'checkbox',
 			'priority'    => 15
 		) ) );
-	}
-    private function button_content2_section( $wp_customize ) {
 
-        $wp_customize->add_setting( 'button_content2', array(
+
+        $wp_customize->add_setting( 'button2_content', array(
             'default'           => 'Join',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_text_field'
         ) );
-        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'button_content2', array(
-            'label'       => esc_html__( 'Button 2 Text', 'aqueduct-child' ),
-            'description' => esc_html__( 'Text to show on Button', 'aqueduct-child' ),
-            'section'     => 'homepage_content',
-            'settings'    => 'button_content2',
+        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'button2_content', array(
+            'label'       => esc_html__( 'Button 2 Label', 'aqueduct-child' ),
+            'section'     => 'homepage_buttons',
+            'settings'    => 'button2_content',
             'type'        => 'text',
             'priority'    => 16
         ) ) );    
-    }
-    private function button_link2_section( $wp_customize ) {
 
-        $wp_customize->add_setting( 'button_link2', array(
+
+        $wp_customize->add_setting( 'button2_link', array(
             'default'           => '',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'esc_url_raw'
         ) );
-        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'button_link2', array(
+        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'button2_link', array(
             'label'       => esc_html__( 'Button 2 Link', 'aqueduct-child' ),
             'description' => esc_html__( 'Paste link for button', 'aqueduct-child' ),
-            'section'     => 'homepage_content',
-            'settings'    => 'button_link2',
-            'type'        => 'text',
+            'section'     => 'homepage_buttons',
+            'settings'    => 'button2_link',
+            'type'        => 'url',
             'priority'    => 17
         ) ) );
-    }
-    // ###############################################################################################
-    //                      Homepage Button 3 Options
-    // ###############################################################################################
-    private function show_button3_section( $wp_customize ) {
 
+
+        
+
+/**
+ * 
+ *
+ * Homepage Button 3
+ * 
+ *
+ */
 		$wp_customize->add_setting( 'show_button3', array(
 			'default'           => false,
-			'sanitize_callback' => array( $this, 'sanitize_checkbox' )
+			'sanitize_callback' => array($this, 'sanitize_checkbox')
 		) );
 		$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'show_button3', array(
 			'label'       => esc_html__( 'Show button 3', 'aqueduct-child' ),
 			'description' => esc_html__( '', 'aqueduct-child' ),
-			'section'     => 'homepage_content',
+			'section'     => 'homepage_buttons',
 			'settings'    => 'show_button3',
 			'type'        => 'checkbox',
 			'priority'    => 18
 		) ) );
-	}
-    private function button_content3_section( $wp_customize ) {
 
-        $wp_customize->add_setting( 'button_content3', array(
+
+        $wp_customize->add_setting( 'button3_content', array(
             'default'           => 'About',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_text_field'
         ) );
-        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'button_content3', array(
-            'label'       => esc_html__( 'Button 3 Text', 'aqueduct-child' ),
-            'description' => esc_html__( 'Text to show on Button', 'aqueduct-child' ),
-            'section'     => 'homepage_content',
-            'settings'    => 'button_content3',
+        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'button3_content', array(
+            'label'       => esc_html__( 'Button 3 Label', 'aqueduct-child' ),
+            'section'     => 'homepage_buttons',
+            'settings'    => 'button3_content',
             'type'        => 'text',
             'priority'    => 19
         ) ) );    
-    }
-    private function button_link3_section( $wp_customize ) {
 
-        $wp_customize->add_setting( 'button_link3', array(
+
+        $wp_customize->add_setting( 'button3_link', array(
             'default'           => '',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'esc_url_raw'
         ) );
-        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'button_link3', array(
+        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'button3_link', array(
             'label'       => esc_html__( 'Button 3 Link', 'aqueduct-child' ),
             'description' => esc_html__( 'Paste link for button', 'aqueduct-child' ),
-            'section'     => 'homepage_content',
-            'settings'    => 'button_link3',
-            'type'        => 'text',
+            'section'     => 'homepage_buttons',
+            'settings'    => 'button3_link',
+            'type'        => 'url',
             'priority'    => 20
         ) ) );
+    
     }
-    // ###############################################################################################
-    //                      Emergency Announcement Settings
-    // ###############################################################################################
-    private function show_announcement_section( $wp_customize ) {
+/**
+ * 
+ *
+ * Homepage Background Image
+ * 
+ *
+ */
+    private function homepage_bgimg_section( $wp_customize ) {
+
+        $wp_customize->add_setting( 'bg_image', array(
+            'default'           =>  esc_url(get_stylesheet_directory_uri()) . '/img/wicklow-homepage-scaled-for-web.jpg',
+            'sanitize_callback' => 'esc_url_raw'
+        ) );
+        $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'bg_image', array(
+            'label'       => esc_html__( 'Select Homepage Image', 'aqueduct-child' ),
+            'section'     => 'homepage_bgimg',
+            'settings'    => 'bg_image',
+            'type'        => 'image',
+        ) ) );
+
+
+    }
+
+
+
+
+
+/**
+ * 
+ *
+ * Emergency Announcement Settings
+ * 
+ *
+ */
+    private function emergency_announcement_section( $wp_customize ) {
 
 		$wp_customize->add_setting( 'show_announcement', array(
 			'default'           => false,
-			'sanitize_callback' => array( $this, 'sanitize_checkbox' )
+			'sanitize_callback' => array($this, 'sanitize_checkbox')
 		) );
 		$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'show_announcement', array(
 			'label'       => esc_html__( 'Show Announcement', 'aqueduct-child' ),
-			'description' => esc_html__( '', 'aqueduct-child' ),
 			'section'     => 'emergency_announcement',
 			'settings'    => 'show_announcement',
 			'type'        => 'checkbox',
 			'priority'    => 10
 		) ) );
-	}
-    private function emergency_announcement_section( $wp_customize ) {
+
 
         $wp_customize->add_setting( 'announcement', array(
             'default'           => '',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_textarea_field'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'announcement', array(
             'label'       => esc_html__( 'Enter Text', 'aqueduct-child' ),
@@ -290,47 +393,39 @@ class Aqueduct_Child_Customizer {
 
 
 
-    // ###############################################################################################
-    //                      Footer Contents Settings
-    // ###############################################################################################
+
+/**
+ * 
+ *
+ * Footer Settings
+ * 
+ *
+ */
 
     // ###########################################################################
     //                       List 1 Item 1
     // ###########################################################################
     private function list1_content_section( $wp_customize ) {
+
         $wp_customize->add_setting( 'list1_img1', array(
             'default'           => 'fa fa-book',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_text_field'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_img1', array(
             'label'       => esc_html__( 'Item 1 Icon', 'aqueduct-child' ),
-            'description' => esc_html__( '', 'aqueduct-child' ),
             'section'     => 'footer_list_1',
             'settings'    => 'list1_img1',
             'priority'    => 18, 
             'type'        => 'select',
-            'choices' => array(
-                ''                      => 'None',
-                'fa fa-home'            => 'Home',
-                'fa fa-bed'             => 'Bed',
-                'fa fa-user-secret'     => 'User Secret',
-                'fa fa-eur'             => 'Euro',
-                'fa fa-graduation-cap'  => 'Graduation Cap',
-                'fa fa-info-circle'     => 'Info Cirlce',
-                'fa fa-envelope-o'      => 'Email',
-                'fa fa-users'           => 'Users',
-                'fa fa-plane'           => 'Plane',
-                'fa fa-book'            => 'Book',
-                'fa fa-thumbs-up'       => 'Thumbs Up'),
-              
+            'choices'     => $this::$font_array,
+
         ) ) );
         $wp_customize->add_setting( 'list1_content1', array(
             'default'           => 'Books',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_text_field'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_content1', array(
             'label'       => esc_html__( 'Item 1 Label', 'aqueduct-child' ),
-            'description' => esc_html__( '', 'aqueduct-child' ),
             'section'     => 'footer_list_1',
             'settings'    => 'list1_content1',
             'type'        => 'text',
@@ -338,15 +433,14 @@ class Aqueduct_Child_Customizer {
         ) ) );
        
         $wp_customize->add_setting( 'list1_link1', array(
-            'default'           => 'https://www.irishmountaineeringclub.org/publications/books/',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'default'           => '',
+            'sanitize_callback' => 'esc_url_raw'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_link1', array(
             'label'       => esc_html__( 'Item 1 Link', 'aqueduct-child' ),
-            'description' => esc_html__( '', 'aqueduct-child' ),
             'section'     => 'footer_list_1',
             'settings'    => 'list1_link1',
-            'type'        => 'text',
+            'type'        => 'url',
             'priority'    => 20,
         ) ) );
 
@@ -355,36 +449,23 @@ class Aqueduct_Child_Customizer {
     // ###########################################################################
         $wp_customize->add_setting( 'list1_img2', array(
             'default'           => 'fa fa-envelope-o',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_text_field'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_img2', array(
             'label'       => esc_html__( 'Item 2 Icon', 'aqueduct-child' ),
-            'description' => esc_html__( '', 'aqueduct-child' ),
             'section'     => 'footer_list_1',
             'settings'    => 'list1_img2',
             'priority'    => 28, 
             'type'        => 'select',
-            'choices' => array(
-                ''                      => 'None',
-                'fa fa-home'            => 'Home',
-                'fa fa-bed'             => 'Bed',
-                'fa fa-user-secret'     => 'User Secret',
-                'fa fa-eur'             => 'Euro',
-                'fa fa-graduation-cap'  => 'Graduation Cap',
-                'fa fa-info-circle'     => 'Info Cirlce',
-                'fa fa-envelope-o'      => 'Email',
-                'fa fa-users'           => 'Users',
-                'fa fa-plane'           => 'Plane',
-                'fa fa-book'            => 'Book',
-                'fa fa-thumbs-up'       => 'Thumbs Up'),              
+            'choices'     => $this::$font_array,
+              
         ) ) );
         $wp_customize->add_setting( 'list1_content2', array(
             'default'           => 'Newsletters',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_text_field'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_content2', array(
             'label'       => esc_html__( 'Item 2 Label', 'aqueduct-child' ),
-            'description' => esc_html__( '', 'aqueduct-child' ),
             'section'     => 'footer_list_1',
             'settings'    => 'list1_content2',
             'type'        => 'text',
@@ -392,15 +473,14 @@ class Aqueduct_Child_Customizer {
         ) ) );
 
         $wp_customize->add_setting( 'list1_link2', array(
-            'default'           => esc_html__(''),
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'default'           => '',
+            'sanitize_callback' => 'esc_url_raw'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_link2', array(
             'label'       => esc_html__( 'Item 2 Link', 'aqueduct-child' ),
-            'description' => esc_html__( '', 'aqueduct-child' ),
             'section'     => 'footer_list_1',
             'settings'    => 'list1_link2',
-            'type'        => 'text',
+            'type'        => 'url',
             'priority'    => 30,
         ) ) );
         // ###########################################################################
@@ -408,36 +488,22 @@ class Aqueduct_Child_Customizer {
         // ###########################################################################
         $wp_customize->add_setting( 'list1_img3', array(
             'default'           => '',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_text_field'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_img3', array(
             'label'       => esc_html__( 'Item 3 Icon', 'aqueduct-child' ),
-            'description' => esc_html__( '', 'aqueduct-child' ),
             'section'     => 'footer_list_1',
             'settings'    => 'list1_img3',
             'priority'    => 48, 
             'type'        => 'select',
-            'choices' => array(
-                ''                      => 'None',
-                'fa fa-home'            => 'Home',
-                'fa fa-bed'             => 'Bed',
-                'fa fa-user-secret'     => 'User Secret',
-                'fa fa-eur'             => 'Euro',
-                'fa fa-graduation-cap'  => 'Graduation Cap',
-                'fa fa-info-circle'     => 'Info Cirlce',
-                'fa fa-envelope-o'      => 'Email',
-                'fa fa-users'           => 'Users',
-                'fa fa-plane'           => 'Plane',
-                'fa fa-book'            => 'Book',
-                'fa fa-thumbs-up'       => 'Thumbs Up'),              
+            'choices'     => $this::$font_array,               
         ) ) );
         $wp_customize->add_setting( 'list1_content3', array(
             'default'           => '',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_text_field'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_content3', array(
             'label'       => esc_html__( 'Item 3 Label', 'aqueduct-child' ),
-            'description' => esc_html__( '', 'aqueduct-child' ),
             'section'     => 'footer_list_1',
             'settings'    => 'list1_content3',
             'type'        => 'text',
@@ -445,15 +511,14 @@ class Aqueduct_Child_Customizer {
         ) ) );
 
         $wp_customize->add_setting( 'list1_link3', array(
-            'default'           => esc_html__(''),
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'default'           => '',
+            'sanitize_callback' => 'esc_url_raw'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_link3', array(
             'label'       => esc_html__( 'Item 3 Link', 'aqueduct-child' ),
-            'description' => esc_html__( '', 'aqeduct-child' ),
             'section'     => 'footer_list_1',
             'settings'    => 'list1_link3',
-            'type'        => 'text',
+            'type'        => 'url',
             'priority'    => 50,
         ) ) );
         // ###########################################################################
@@ -461,36 +526,23 @@ class Aqueduct_Child_Customizer {
         // ###########################################################################
         $wp_customize->add_setting( 'list1_img4', array(
             'default'           => '',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_text_field'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_img4', array(
             'label'       => esc_html__( 'Item 4 Icon', 'aqueduct-child' ),
-            'description' => esc_html__( '', 'aqueduct-child' ),
             'section'     => 'footer_list_1',
             'settings'    => 'list1_img4',
             'priority'    => 58, 
             'type'        => 'select',
-            'choices' => array(
-                ''                      => 'None',
-                'fa fa-home'            => 'Home',
-                'fa fa-bed'             => 'Bed',
-                'fa fa-user-secret'     => 'User Secret',
-                'fa fa-eur'             => 'Euro',
-                'fa fa-graduation-cap'  => 'Graduation Cap',
-                'fa fa-info-circle'     => 'Info Cirlce',
-                'fa fa-envelope-o'      => 'Email',
-                'fa fa-users'           => 'Users',
-                'fa fa-plane'           => 'Plane',
-                'fa fa-book'            => 'Book',
-                'fa fa-thumbs-up'       => 'Thumbs Up'),              
+            'choices'     => $this::$font_array,
+             
         ) ) );
         $wp_customize->add_setting( 'list1_content4', array(
             'default'           => '',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_text_field'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_content4', array(
             'label'       => esc_html__( 'Item 4 Label', 'aqueduct-child' ),
-            'description' => esc_html__( '', 'aqueduct-child' ),
             'section'     => 'footer_list_1',
             'settings'    => 'list1_content4',
             'type'        => 'text',
@@ -498,15 +550,14 @@ class Aqueduct_Child_Customizer {
         ) ) );
 
         $wp_customize->add_setting( 'list1_link4', array(
-            'default'           => esc_html__(''),
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'default'           => '',
+            'sanitize_callback' => 'esc_url_raw'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_link4', array(
             'label'       => esc_html__( 'Item 4 Link', 'aqueduct-child' ),
-            'description' => esc_html__( '', 'aqeduct-child' ),
             'section'     => 'footer_list_1',
             'settings'    => 'list1_link4',
-            'type'        => 'text',
+            'type'        => 'url',
             'priority'    => 60,
         ) ) );
         // ###########################################################################
@@ -514,36 +565,22 @@ class Aqueduct_Child_Customizer {
         // ###########################################################################
         $wp_customize->add_setting( 'list1_img5', array(
             'default'           => '',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_text_field'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_img5', array(
             'label'       => esc_html__( 'Item 5 Icon', 'aqueduct-child' ),
-            'description' => esc_html__( '', 'aqueduct-child' ),
             'section'     => 'footer_list_1',
             'settings'    => 'list1_img5',
             'priority'    => 68, 
             'type'        => 'select',
-            'choices' => array(
-                ''                      => 'None',
-                'fa fa-home'            => 'Home',
-                'fa fa-bed'             => 'Bed',
-                'fa fa-user-secret'     => 'User Secret',
-                'fa fa-eur'             => 'Euro',
-                'fa fa-graduation-cap'  => 'Graduation Cap',
-                'fa fa-info-circle'     => 'Info Cirlce',
-                'fa fa-envelope-o'      => 'Email',
-                'fa fa-users'           => 'Users',
-                'fa fa-plane'           => 'Plane',
-                'fa fa-book'            => 'Book',
-                'fa fa-thumbs-up'       => 'Thumbs Up'),              
+            'choices'     => $this::$font_array,              
         ) ) );
         $wp_customize->add_setting( 'list1_content5', array(
             'default'           => '',
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'sanitize_callback' => 'sanitize_text_field'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_content5', array(
             'label'       => esc_html__( 'Item 5 Label', 'aqueduct-child' ),
-            'description' => esc_html__( '', 'aqueduct-child' ),
             'section'     => 'footer_list_1',
             'settings'    => 'list1_content5',
             'type'        => 'text',
@@ -551,15 +588,14 @@ class Aqueduct_Child_Customizer {
         ) ) );
 
         $wp_customize->add_setting( 'list1_link5', array(
-            'default'           => esc_html__(''),
-            'sanitize_callback' => array( $this, 'sanitize_text_field' )
+            'default'           => '',
+            'sanitize_callback' => 'esc_url_raw'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_link5', array(
             'label'       => esc_html__( 'Item 5 Link', 'aqueduct-child' ),
-            'description' => esc_html__( '', 'aqeduct-child' ),
             'section'     => 'footer_list_1',
             'settings'    => 'list1_link5',
-            'type'        => 'text',
+            'type'        => 'url',
             'priority'    => 70,
         ) ) );
     }
@@ -569,37 +605,23 @@ class Aqueduct_Child_Customizer {
         private function list2_content_section( $wp_customize ) {
             $wp_customize->add_setting( 'list2_img1', array(
                 'default'           => 'fa fa-home',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_img1', array(
                 'label'       => esc_html__( 'Item 1 Icon', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_2',
                 'settings'    => 'list2_img1',
                 'priority'    => 18, 
                 'type'        => 'select',
-                'choices' => array(
-                    ''                      => 'None',
-                    'fa fa-home'            => 'Home',
-                    'fa fa-bed'             => 'Bed',
-                    'fa fa-user-secret'     => 'User Secret',
-                    'fa fa-eur'             => 'Euro',
-                    'fa fa-graduation-cap'  => 'Graduation Cap',
-                    'fa fa-info-circle'     => 'Info Cirlce',
-                    'fa fa-envelope-o'      => 'Email',
-                    'fa fa-users'           => 'Users',
-                    'fa fa-plane'           => 'Plane',
-                    'fa fa-book'            => 'Book',
-                    'fa fa-thumbs-up'       => 'Thumbs Up'),
+                'choices'     => $this::$font_array,
                   
             ) ) );
             $wp_customize->add_setting( 'list2_content1', array(
                 'default'           => 'Hut Facilities',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_content1', array(
                 'label'       => esc_html__( 'Item 1 Label', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_2',
                 'settings'    => 'list2_content1',
                 'type'        => 'text',
@@ -607,15 +629,14 @@ class Aqueduct_Child_Customizer {
             ) ) );
            
             $wp_customize->add_setting( 'list2_link1', array(
-                'default'           => 'https://www.irishmountaineeringclub.org/hut/',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'default'           => '',
+                'sanitize_callback' => 'esc_url_raw'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_link1', array(
                 'label'       => esc_html__( 'Item 1 Link', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_2',
                 'settings'    => 'list2_link1',
-                'type'        => 'text',
+                'type'        => 'url',
                 'priority'    => 20,
             ) ) );
     
@@ -624,36 +645,22 @@ class Aqueduct_Child_Customizer {
         // ###########################################################################
             $wp_customize->add_setting( 'list2_img2', array(
                 'default'           => 'fa fa-bed',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_img2', array(
                 'label'       => esc_html__( 'Item 2 Icon', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_2',
                 'settings'    => 'list2_img2',
                 'priority'    => 28, 
                 'type'        => 'select',
-                'choices' => array(
-                    ''                      => 'None',
-                    'fa fa-home'            => 'Home',
-                    'fa fa-bed'             => 'Bed',
-                    'fa fa-user-secret'     => 'User Secret',
-                    'fa fa-eur'             => 'Euro',
-                    'fa fa-graduation-cap'  => 'Graduation Cap',
-                    'fa fa-info-circle'     => 'Info Cirlce',
-                    'fa fa-envelope-o'      => 'Email',
-                    'fa fa-users'           => 'Users',
-                    'fa fa-plane'           => 'Plane',
-                    'fa fa-book'            => 'Book',
-                    'fa fa-thumbs-up'       => 'Thumbs Up'),              
+                'choices'     => $this::$font_array,            
             ) ) );
             $wp_customize->add_setting( 'list2_content2', array(
                 'default'           => 'Hut Booking',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_content2', array(
                 'label'       => esc_html__( 'Item 2 Label', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_2',
                 'settings'    => 'list2_content2',
                 'type'        => 'text',
@@ -661,15 +668,14 @@ class Aqueduct_Child_Customizer {
             ) ) );
     
             $wp_customize->add_setting( 'list2_link2', array(
-                'default'           => esc_html__('https://www.irishmountaineeringclub.org/accommodations/'),
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'default'           => '',
+                'sanitize_callback' => 'esc_url_raw'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_link2', array(
                 'label'       => esc_html__( 'Item 2 Link', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_2',
                 'settings'    => 'list2_link2',
-                'type'        => 'text',
+                'type'        => 'url',
                 'priority'    => 30,
             ) ) );
         // ###########################################################################
@@ -677,36 +683,22 @@ class Aqueduct_Child_Customizer {
         // ###########################################################################
             $wp_customize->add_setting( 'list2_img3', array(
                 'default'           => 'fa fa-thumbs-up',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_img3', array(
                 'label'       => esc_html__( 'Item 3 Icon', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_2',
                 'settings'    => 'list2_img3',
                 'priority'    => 38, 
                 'type'        => 'select',
-                'choices' => array(
-                    ''                      => 'None',
-                    'fa fa-home'            => 'Home',
-                    'fa fa-bed'             => 'Bed',
-                    'fa fa-user-secret'     => 'User Secret',
-                    'fa fa-eur'             => 'Euro',
-                    'fa fa-graduation-cap'  => 'Graduation Cap',
-                    'fa fa-info-circle'     => 'Info Cirlce',
-                    'fa fa-envelope-o'      => 'Email',
-                    'fa fa-users'           => 'Users',
-                    'fa fa-plane'           => 'Plane',
-                    'fa fa-book'            => 'Book',
-                    'fa fa-thumbs-up'       => 'Thumbs Up'),              
+                'choices'     => $this::$font_array,              
             ) ) );
             $wp_customize->add_setting( 'list2_content3', array(
                 'default'           => 'Kindred Clubs',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_content3', array(
                 'label'       => esc_html__( 'Item 3 Label', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_2',
                 'settings'    => 'list2_content3',
                 'type'        => 'text',
@@ -714,15 +706,14 @@ class Aqueduct_Child_Customizer {
             ) ) );
     
             $wp_customize->add_setting( 'list2_link3', array(
-                'default'           => esc_html__('https://www.irishmountaineeringclub.org/about/kindred/'),
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'default'           => '',
+                'sanitize_callback' => 'esc_url_raw'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_link3', array(
                 'label'       => esc_html__( 'Item 3 Link', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_2',
                 'settings'    => 'list2_link3',
-                'type'        => 'text',
+                'type'        => 'url',
                 'priority'    => 40,
             ) ) );
         // ###########################################################################
@@ -730,36 +721,22 @@ class Aqueduct_Child_Customizer {
         // ###########################################################################
             $wp_customize->add_setting( 'list2_img4', array(
                 'default'           => '',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_img4', array(
                 'label'       => esc_html__( 'Item 4 Icon', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_2',
                 'settings'    => 'list2_img4',
                 'priority'    => 48, 
                 'type'        => 'select',
-                'choices' => array(
-                    ''                      => 'None',
-                    'fa fa-home'            => 'Home',
-                    'fa fa-bed'             => 'Bed',
-                    'fa fa-user-secret'     => 'User Secret',
-                    'fa fa-eur'             => 'Euro',
-                    'fa fa-graduation-cap'  => 'Graduation Cap',
-                    'fa fa-info-circle'     => 'Info Cirlce',
-                    'fa fa-envelope-o'      => 'Email',
-                    'fa fa-users'           => 'Users',
-                    'fa fa-plane'           => 'Plane',
-                    'fa fa-book'            => 'Book',
-                    'fa fa-thumbs-up'       => 'Thumbs Up'),              
+                'choices'     => $this::$font_array,           
             ) ) );
             $wp_customize->add_setting( 'list2_content4', array(
                 'default'           => '',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_content4', array(
                 'label'       => esc_html__( 'Item 4 Label', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_2',
                 'settings'    => 'list2_content4',
                 'type'        => 'text',
@@ -767,15 +744,14 @@ class Aqueduct_Child_Customizer {
             ) ) );
     
             $wp_customize->add_setting( 'list2_link4', array(
-                'default'           => esc_html__(''),
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'default'           => '',
+                'sanitize_callback' => 'esc_url_raw'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_link4', array(
                 'label'       => esc_html__( 'Item 4 Link', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_2',
                 'settings'    => 'list2_link4',
-                'type'        => 'text',
+                'type'        => 'url',
                 'priority'    => 50,
             ) ) );
         // ###########################################################################
@@ -783,36 +759,22 @@ class Aqueduct_Child_Customizer {
         // ###########################################################################
             $wp_customize->add_setting( 'list2_img5', array(
                 'default'           => '',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_img5', array(
                 'label'       => esc_html__( 'Item 5 Icon', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_2',
                 'settings'    => 'list2_img5',
                 'priority'    => 58, 
                 'type'        => 'select',
-                'choices' => array(
-                    ''                      => 'None',
-                    'fa fa-home'            => 'Home',
-                    'fa fa-bed'             => 'Bed',
-                    'fa fa-user-secret'     => 'User Secret',
-                    'fa fa-eur'             => 'Euro',
-                    'fa fa-graduation-cap'  => 'Graduation Cap',
-                    'fa fa-info-circle'     => 'Info Cirlce',
-                    'fa fa-envelope-o'      => 'Email',
-                    'fa fa-users'           => 'Users',
-                    'fa fa-plane'           => 'Plane',
-                    'fa fa-book'            => 'Book',
-                    'fa fa-thumbs-up'       => 'Thumbs Up'),              
+                'choices'     => $this::$font_array,             
             ) ) );
             $wp_customize->add_setting( 'list2_content5', array(
                 'default'           => '',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_content5', array(
                 'label'       => esc_html__( 'Item 5 Label', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_2',
                 'settings'    => 'list2_content5',
                 'type'        => 'text',
@@ -820,15 +782,14 @@ class Aqueduct_Child_Customizer {
             ) ) );
     
             $wp_customize->add_setting( 'list2_link5', array(
-                'default'           => esc_html__(''),
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'default'           => '',
+                'sanitize_callback' => 'esc_url_raw'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_link5', array(
                 'label'       => esc_html__( 'Item 5 Link', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_2',
                 'settings'    => 'list2_link5',
-                'type'        => 'text',
+                'type'        => 'url',
                 'priority'    => 60,
             ) ) );
         }
@@ -838,37 +799,23 @@ class Aqueduct_Child_Customizer {
         private function list3_content_section( $wp_customize ) {
             $wp_customize->add_setting( 'list3_img1', array(
                 'default'           => 'fa fa-user-secret',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_img1', array(
                 'label'       => esc_html__( 'Item 1 Icon', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_3',
                 'settings'    => 'list3_img1',
                 'priority'    => 18, 
                 'type'        => 'select',
-                'choices' => array(
-                    ''                      => 'None',
-                    'fa fa-home'            => 'Home',
-                    'fa fa-bed'             => 'Bed',
-                    'fa fa-user-secret'     => 'User Secret',
-                    'fa fa-eur'             => 'Euro',
-                    'fa fa-graduation-cap'  => 'Graduation Cap',
-                    'fa fa-info-circle'     => 'Info Cirlce',
-                    'fa fa-envelope-o'      => 'Email',
-                    'fa fa-users'           => 'Users',
-                    'fa fa-plane'           => 'Plane',
-                    'fa fa-book'            => 'Book',
-                    'fa fa-thumbs-up'       => 'Thumbs Up'),
+                'choices'     => $this::$font_array,
                   
             ) ) );
             $wp_customize->add_setting( 'list3_content1', array(
                 'default'           => 'Data Privacy',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_content1', array(
                 'label'       => esc_html__( 'Item 1 Label', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_3',
                 'settings'    => 'list3_content1',
                 'type'        => 'text',
@@ -876,15 +823,14 @@ class Aqueduct_Child_Customizer {
             ) ) );
            
             $wp_customize->add_setting( 'list3_link1', array(
-                'default'           => 'https://www.irishmountaineeringclub.org/about/documents/data-privacy-policy/',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'default'           => '',
+                'sanitize_callback' => 'esc_url_raw'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_link1', array(
                 'label'       => esc_html__( 'Item 1 Link', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_3',
                 'settings'    => 'list3_link1',
-                'type'        => 'text',
+                'type'        => 'url',
                 'priority'    => 20,
             ) ) );
     
@@ -892,37 +838,23 @@ class Aqueduct_Child_Customizer {
         //                            List 3 Item 2
         // ###########################################################################
             $wp_customize->add_setting( 'list3_img2', array(
-                'default'           => 'Expedition Grant',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'default'           => 'fa fa-eur',
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_img2', array(
                 'label'       => esc_html__( 'Item 2 Icon', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_3',
                 'settings'    => 'list3_img2',
                 'priority'    => 28, 
                 'type'        => 'select',
-                'choices' => array(
-                    ''                      => 'None',
-                    'fa fa-home'            => 'Home',
-                    'fa fa-bed'             => 'Bed',
-                    'fa fa-user-secret'     => 'User Secret',
-                    'fa fa-eur'             => 'Euro',
-                    'fa fa-graduation-cap'  => 'Graduation Cap',
-                    'fa fa-info-circle'     => 'Info Cirlce',
-                    'fa fa-envelope-o'      => 'Email',
-                    'fa fa-users'           => 'Users',
-                    'fa fa-plane'           => 'Plane',
-                    'fa fa-book'            => 'Book',
-                    'fa fa-thumbs-up'       => 'Thumbs Up'),              
+                'choices'     => $this::$font_array,              
             ) ) );
             $wp_customize->add_setting( 'list3_content2', array(
-                'default'           => '',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'default'           => 'Expedition Grant',
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_content2', array(
                 'label'       => esc_html__( 'Item 2 Label', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_3',
                 'settings'    => 'list3_content2',
                 'type'        => 'text',
@@ -930,15 +862,14 @@ class Aqueduct_Child_Customizer {
             ) ) );
     
             $wp_customize->add_setting( 'list3_link2', array(
-                'default'           => esc_html__('https://www.irishmountaineeringclub.org/about/documents/expedition-grant-policy/'),
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'default'           => '',
+                'sanitize_callback' => 'esc_url_raw'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_link2', array(
                 'label'       => esc_html__( 'Item 2 Link', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_3',
                 'settings'    => 'list3_link2',
-                'type'        => 'text',
+                'type'        => 'url',
                 'priority'    => 30,
             ) ) );
         // ###########################################################################
@@ -946,36 +877,22 @@ class Aqueduct_Child_Customizer {
         // ###########################################################################
             $wp_customize->add_setting( 'list3_img3', array(
                 'default'           => 'fa fa-graduation-cap',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_img3', array(
                 'label'       => esc_html__( 'Item 3 Icon', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_3',
                 'settings'    => 'list3_img3',
                 'priority'    => 38, 
                 'type'        => 'select',
-                'choices' => array(
-                    ''                      => 'None',
-                    'fa fa-home'            => 'Home',
-                    'fa fa-bed'             => 'Bed',
-                    'fa fa-user-secret'     => 'User Secret',
-                    'fa fa-eur'             => 'Euro',
-                    'fa fa-graduation-cap'  => 'Graduation Cap',
-                    'fa fa-info-circle'     => 'Info Cirlce',
-                    'fa fa-envelope-o'      => 'Email',
-                    'fa fa-users'           => 'Users',
-                    'fa fa-plane'           => 'Plane',
-                    'fa fa-book'            => 'Book',
-                    'fa fa-thumbs-up'       => 'Thumbs Up'),              
+                'choices'     => $this::$font_array,              
             ) ) );
             $wp_customize->add_setting( 'list3_content3', array(
                 'default'           => 'Constitution',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_content3', array(
                 'label'       => esc_html__( 'Item 3 Label', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_3',
                 'settings'    => 'list3_content3',
                 'type'        => 'text',
@@ -983,15 +900,14 @@ class Aqueduct_Child_Customizer {
             ) ) );
     
             $wp_customize->add_setting( 'list3_link3', array(
-                'default'           => esc_html__('https://www.irishmountaineeringclub.org/about/documents/constitution/'),
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'default'           => '',
+                'sanitize_callback' => 'esc_url_raw'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_link3', array(
                 'label'       => esc_html__( 'Item 3 Link', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_3',
                 'settings'    => 'list3_link3',
-                'type'        => 'text',
+                'type'        => 'url',
                 'priority'    => 40,
             ) ) );
         // ###########################################################################
@@ -999,37 +915,23 @@ class Aqueduct_Child_Customizer {
         // ###########################################################################
             $wp_customize->add_setting( 'list3_img4', array(
                 'default'           => 'fa fa-eur',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_img4', array(
                 'label'       => esc_html__( 'Item 4 Icon', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_3',
                 'settings'    => 'list3_img4',
                 'priority'    => 48, 
                 'type'        => 'select',
-                'choices' => array(
-                    ''                      => 'None',
-                    'fa fa-home'            => 'Home',
-                    'fa fa-bed'             => 'Bed',
-                    'fa fa-user-secret'     => 'User Secret',
-                    'fa fa-eur'             => 'Euro',
-                    'fa fa-graduation-cap'  => 'Graduation Cap',
-                    'fa fa-info-circle'     => 'Info Cirlce',
-                    'fa fa-envelope-o'      => 'Email',
-                    'fa fa-users'           => 'Users',
-                    'fa fa-plane'           => 'Plane',
-                    'fa fa-book'            => 'Book',
-                    'fa fa-thumbs-up'       => 'Thumbs Up'),
+                'choices'     => $this::$font_array,
                   
             ) ) );
             $wp_customize->add_setting( 'list3_content4', array(
                 'default'           => 'Renew Membership',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_content4', array(
                 'label'       => esc_html__( 'Item 4 Label', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_3',
                 'settings'    => 'list3_content4',
                 'type'        => 'text',
@@ -1037,15 +939,14 @@ class Aqueduct_Child_Customizer {
             ) ) );
            
             $wp_customize->add_setting( 'list3_link4', array(
-                'default'           => 'https://www.irishmountaineeringclub.org/membership/renew/',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'default'           => '',
+                'sanitize_callback' => 'esc_url_raw'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_link4', array(
                 'label'       => esc_html__( 'Item 4 Link', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_3',
                 'settings'    => 'list3_link4',
-                'type'        => 'text',
+                'type'        => 'url',
                 'priority'    => 50,
             ) ) );
     
@@ -1053,37 +954,23 @@ class Aqueduct_Child_Customizer {
         //                            List 3 Item 5
         // ###########################################################################
             $wp_customize->add_setting( 'list3_img5', array(
-                'default'           => '',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'default'           => 'fa fa-users',
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_img5', array(
                 'label'       => esc_html__( 'Item 5 Icon', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_3',
                 'settings'    => 'list3_img5',
                 'priority'    => 58, 
                 'type'        => 'select',
-                'choices' => array(
-                    ''                      => 'None',
-                    'fa fa-home'            => 'Home',
-                    'fa fa-bed'             => 'Bed',
-                    'fa fa-user-secret'     => 'User Secret',
-                    'fa fa-eur'             => 'Euro',
-                    'fa fa-graduation-cap'  => 'Graduation Cap',
-                    'fa fa-info-circle'     => 'Info Cirlce',
-                    'fa fa-envelope-o'      => 'Email',
-                    'fa fa-users'           => 'Users',
-                    'fa fa-plane'           => 'Plane',
-                    'fa fa-book'            => 'Book',
-                    'fa fa-thumbs-up'       => 'Thumbs Up'),              
+                'choices'     => $this::$font_array,             
             ) ) );
             $wp_customize->add_setting( 'list3_content5', array(
-                'default'           => '',
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'default'           => 'Memebers Area',
+                'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_content5', array(
                 'label'       => esc_html__( 'Item 5 Label', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_3',
                 'settings'    => 'list3_content5',
                 'type'        => 'text',
@@ -1091,32 +978,39 @@ class Aqueduct_Child_Customizer {
             ) ) );
     
             $wp_customize->add_setting( 'list3_link5', array(
-                'default'           => esc_html__(''),
-                'sanitize_callback' => array( $this, 'sanitize_text_field' )
+                'default'           => '',
+                'sanitize_callback' => 'esc_url_raw'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_link5', array(
                 'label'       => esc_html__( 'Item 5 Link', 'aqueduct-child' ),
-                'description' => esc_html__( '', 'aqueduct-child' ),
                 'section'     => 'footer_list_3',
                 'settings'    => 'list3_link5',
-                'type'        => 'text',
+                'type'        => 'url',
                 'priority'    => 60,
             ) ) );
         
     }
 
 
-
-    // ###############################################################################################
-    //                      Sanitization Functions
-    // ###############################################################################################
-    public function sanitize_text_field( $str ) {
-        $filtered = _sanitize_text_fields( $str, false );
-
-        return apply_filters( 'sanitize_text_field', $filtered, $str );
-    }
+/**
+ * 
+ *
+ * Sanitization Functions
+ * 
+ *
+ */
 
     public function sanitize_checkbox( $input ) {
         return ( $input === true ) ? true : false;
-    }    
+    }
+
+    public function sanitize_select( $input, $setting ){
+         
+        $input = sanitize_key($input);
+        //get the list of possible select options 
+        $choices = $setting->manager->get_control( $setting->id )->choices;                         
+        //return input if valid or return default option
+        return ( array_key_exists( $input, $choices ) ? $input : $setting->default );                
+         
+    }
 }

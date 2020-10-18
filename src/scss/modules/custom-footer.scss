@@ -17,10 +17,24 @@
     margin: 0;
 }
 .footer-container h2 {
+    position: relative;
     font-size: 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
     color: var(--foot-txt);
     display: block;
-    padding: 4px  0px 4px 16px;
+    padding: 0px  0px 0px 16px;
+}
+.footer-container h2:after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 16px;
+    height: 1px;
+    width: 60%;
+    width: clamp(120px, 60%, 200px);
+    background-color: var(--foot-txt);
+    opacity: 0.3;
 }
 .footer-container {
     display: flex;
@@ -33,7 +47,7 @@
     padding-right: 12px;
 }
 .footer-list {
-    padding-top: 4px;
+    padding-top: 12px;
     padding-bottom: 8px;
 }
 .footer-list a {
@@ -64,7 +78,7 @@
     order: 3;
     padding-top: 8px;
     /* padding-bottom: 64px; */
-    flex-basis: 40%;
+    flex-basis: 35%;
     /* margin-top: -120px; */
     margin-left: 8px;
 }
@@ -144,24 +158,24 @@
     .logo-container {
         order: 1;
         padding-top: 24px;
-        flex-basis: 15%;
+        flex-basis: 20%;
         align-content: center;
         margin-top: 0;
     }
     .darkButton {
         order: 2;
-        flex-basis: 15%;
+        flex-basis: 20%;
         padding-top: 56px;
     }
     .footer-first {
         padding-top: 16px;
         order: 3;
-        flex-basis: 15%;
+        flex-basis: 20%;
     }
     .footer-middle {
         padding-top: 16px;
         order: 4;
-        flex-basis: 15%;
+        flex-basis: 20%;
         margin: 0;
     }
     .footer-end {

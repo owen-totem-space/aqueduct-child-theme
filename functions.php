@@ -39,6 +39,7 @@ function deregister_howlthemes(){
     wp_dequeue_script( 'myscript' );
     wp_deregister_style( 'google-fonts' );
     wp_dequeue_style( 'google-fonts' );
+
 }
 add_action('wp_enqueue_scripts','deregister_howlthemes', 50);
 
@@ -46,6 +47,17 @@ add_action('wp_enqueue_scripts','deregister_howlthemes', 50);
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
+/**
+ * 
+ * customjs-customize just added the 5 star rating logo in customizer
+ * 
+ */
+
+function deregister_customize_script(){
+    wp_deregister_script( 'customjs-customize' );
+    wp_dequeue_script( 'customjs-customize' );
+}
+add_action( 'customize_controls_enqueue_scripts', 'deregister_customize_script', 20 );
 
 
 // #######################################################################################################
@@ -76,7 +88,7 @@ add_action( 'wp_enqueue_scripts', 'load_litebox_footer' );
 //                            Add pluginUpdateChecker
 // #######################################################################################################
 
-require 'plugin-update-checker/plugin-update-checker.php';
+require 'plugin-update-checker-4.10/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 	'https://github.com/owen-totem-space/aqueduct-child-theme/',
 	__FILE__,
