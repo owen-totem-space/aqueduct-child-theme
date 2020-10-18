@@ -11,6 +11,8 @@ function set_theme_mods() {
     set_theme_mod( 'linkcolorhover-setting', '#43AD60' );
     set_theme_mod( 'fontsize', '16' );
     set_theme_mod( 'typography-setting', 'Segoe UI');
+    set_theme_mod( 'imageradio', 'best' );
+    get_theme_mod( 'home_display', 'magazine' );
 }
 add_action( 'init', 'set_theme_mods' );
 
@@ -19,11 +21,12 @@ add_action( 'init', 'set_theme_mods' );
 /*
 *   Remove Typography Panel From Customizer. Fonts Set in CSS
 */
-function remove_typo_panel(){
+function remove_customizer_panels(){
     global $wp_customize;
     $wp_customize->remove_panel( 'typo' );
+    $wp_customize->remove_section( 'headersection' );
 }
-add_action( 'customize_register', 'remove_typo_panel', 20);
+add_action( 'customize_register', 'remove_customizer_panels', 20);
 
 
 
