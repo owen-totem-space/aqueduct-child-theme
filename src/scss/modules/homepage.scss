@@ -2,17 +2,25 @@
  /*                                             Homepage Showcase                                               */
  /* ########################################################################################################### */
  .emergency-announcement {
-    /* background-color: rgb(212, 0, 0); */
+    background-color: #CAA74E;
     width: 100%;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    padding: 12px;
 }
 .emergency-announcement p {
+    font-size: 1.1rem;
     margin:0;
-    margin-bottom: 12px;
-    padding: 16px;
-    color: #cecece;
+    color: #333;
+    padding-bottom: 8px;
 }
+.announce-btn {
+    display: inline-block;
+    border-radius: 5px;
+    min-width: 4em;
+}
+
 .showcase {
     background-size: cover;
     background-position: center;

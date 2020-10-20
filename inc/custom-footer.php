@@ -22,7 +22,9 @@ function imc_footer(){?>
             <h3 id=darkButton><i class='fa fa-moon-o' aria-hidden='true'></i> Dark</h3>
         </div>
         <div class="footer-first">
-            <h2>PUBLICATIONS</h2>
+            <?php if(get_theme_mod( 'list1_title' )) : ?>
+            <h2><?php echo esc_html__(get_theme_mod( 'list1_title', 'Publications' ));?></h2>
+            <?php endif; ?>
             <div class="footer-list">
             <?php
                 if (get_theme_mod('list1_content1')) {
@@ -65,7 +67,9 @@ function imc_footer(){?>
             </div>
         </div>
         <div class="footer-middle">
-            <h2>hut</h2>
+            <?php if(get_theme_mod( 'list2_title' )) : ?>
+            <h2><?php echo esc_html__(get_theme_mod( 'list2_title', 'Hut' ));?></h2>
+            <?php endif; ?>
             <div class="footer-list">
                 <?php 
                 if (get_theme_mod('list2_content1')) { 
@@ -107,7 +111,9 @@ function imc_footer(){?>
             </div>
         </div>
         <div class="footer-end">
-            <h2>info</h2>
+            <?php if(get_theme_mod( 'list3_title' )) : ?>
+            <h2><?php echo esc_html__(get_theme_mod( 'list3_title', 'Info' ));?></h2>
+            <?php endif; ?>
             <div class="footer-list">
                 <?php 
                 if (get_theme_mod('list3_content1')) { 

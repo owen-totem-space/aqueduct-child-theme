@@ -72,10 +72,10 @@ function autoResizeTextarea (){
   }else{
     for (let i = 0; i < textarea.length; i++) {
       textarea[i].setAttribute('style', 'height:' + (textarea[i].scrollHeight) + 'px;overflow-y:hidden;');
-      textarea[i].addEventListener("input", onInput, false);
+      textarea[i].addEventListener("input", onInput);
     }
 
-    function onInput() {
+    const onInput = function () {
       this.style.height = 'auto';
       this.style.height = (this.scrollHeight) + 'px';
     }

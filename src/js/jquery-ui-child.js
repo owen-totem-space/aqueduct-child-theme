@@ -21,8 +21,5 @@ jQuery(document).ready( function($) {
   $( ".minimalTabs" ).tabs({
     show: (400),
     hide: (250)
-    // show: { effect: "slide", direction: "left", duration: 200, easing: "easeOutBack" } ,
-    // hide: { effect: "slide", direction: "right", duration: 200, easing: "easeInQuad" } 
   });
-
 });

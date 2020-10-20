@@ -16,7 +16,7 @@ class Aqueduct_Child_Customizer {
  *
  */
 
-    public static $font_array = array(
+    public static $icon_array = array(
         ''                      => 'None',
         'fa fa-home'            => 'Home',
         'fa fa-bed'             => 'Bed',
@@ -31,16 +31,11 @@ class Aqueduct_Child_Customizer {
         'fa fa-thumbs-up'       => 'Thumbs Up'
     );
 
-
-
 	
 	public function __construct() {
 
         add_action( 'customize_register', array( $this, 'register_customize_sections' ) );
     }
-
-
-
 
 
     public function register_customize_sections( $wp_customize ) {
@@ -80,8 +75,6 @@ class Aqueduct_Child_Customizer {
         $this->homepage_bgimg_section( $wp_customize );
 
 
-
-
 /**
  * 
  *
@@ -90,13 +83,12 @@ class Aqueduct_Child_Customizer {
  *
  */
         $wp_customize->add_section( 'emergency_announcement', array(
-            'title'    => __( 'IMC Emergency Announcement', 'aqueduct-child' ),
-            'priority' => 10
+            'title'    => __( 'Emergency Announcement', 'aqueduct-child' ),
+            'priority' => 10,
+            'panel'    =>   'imc-homepage'
         ) );
     
         $this->emergency_announcement_section( $wp_customize );
-
-
 
 
 /**
@@ -138,9 +130,6 @@ class Aqueduct_Child_Customizer {
     
 
     }
-
-    
-
 
 
 /**
@@ -328,6 +317,8 @@ class Aqueduct_Child_Customizer {
         ) ) );
     
     }
+
+
 /**
  * 
  *
@@ -373,7 +364,7 @@ class Aqueduct_Child_Customizer {
 			'section'     => 'emergency_announcement',
 			'settings'    => 'show_announcement',
 			'type'        => 'checkbox',
-			'priority'    => 10
+			'priority'    => 20
 		) ) );
 
 
@@ -386,8 +377,59 @@ class Aqueduct_Child_Customizer {
             'section'     => 'emergency_announcement',
             'settings'    => 'announcement',
             'type'        => 'textarea',
-            'priority'    => 11
+            'priority'    => 30
         ) ) );
+
+/**
+ * 
+ *
+ * Emergency Announcement Button
+ * 
+ *
+ */
+
+        $wp_customize->add_setting( 'show_announce_button', array(
+            'default'           => false,
+            'sanitize_callback' => array($this, 'sanitize_checkbox')
+        ) );
+        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'show_announce_button', array(
+            'label'       => esc_html__( 'Show button', 'aqueduct-child' ),
+            'section'     => 'emergency_announcement',
+            'settings'    => 'show_announce_button',
+            'type'        => 'checkbox',
+            'priority'    => 40
+
+        ) ) );
+
+
+        $wp_customize->add_setting( 'announce_btn_content', array(
+            'default'           => 'Link',
+            'sanitize_callback' => 'sanitize_text_field'
+        ) );
+        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'announce_btn_content', array(
+            'label'       => esc_html__( 'Button Label', 'aqueduct-child' ),
+            'section'     => 'emergency_announcement',
+            'settings'    => 'announce_btn_content',
+            'type'        => 'text',
+            'priority'    => 50
+
+        ) ) ); 
+
+
+        $wp_customize->add_setting( 'announce_link', array(
+            'default'           => '',
+            'sanitize_callback' => 'esc_url_raw'
+        ) );
+        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'announce_link', array(
+            'label'       => esc_html__( 'Link', 'aqueduct-child' ),
+            'description' => esc_html__( 'Paste link for button', 'aqueduct-child' ),
+            'section'     => 'emergency_announcement',
+            'settings'    => 'announce_link',
+            'type'        => 'url',
+            'priority'    => 60
+
+        ) ) );
+
     }
 
 
@@ -401,15 +443,30 @@ class Aqueduct_Child_Customizer {
  * 
  *
  */
+        private function list1_content_section( $wp_customize ) {
 
-    // ###########################################################################
-    //                       List 1 Item 1
-    // ###########################################################################
-    private function list1_content_section( $wp_customize ) {
+            $wp_customize->add_setting( 'list1_title', array(
+                'default'           => 'Publications',
+                'sanitize_callback' => 'sanitize_text_field'
+            ) );
+            $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_title', array(
+                'label'       => esc_html__( 'List Title', 'aqueduct-child' ),
+                'section'     => 'footer_list_1',
+                'settings'    => 'list1_title',
+                'priority'    => 15, 
+                'type'        => 'text',
 
+            ) ) );
+/**
+ * 
+ *
+ * List 1 Item 1
+ * 
+ *
+ */
         $wp_customize->add_setting( 'list1_img1', array(
             'default'           => 'fa fa-book',
-            'sanitize_callback' => 'sanitize_text_field'
+            'sanitize_callback' => 'sanitize_select'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_img1', array(
             'label'       => esc_html__( 'Item 1 Icon', 'aqueduct-child' ),
@@ -417,7 +474,7 @@ class Aqueduct_Child_Customizer {
             'settings'    => 'list1_img1',
             'priority'    => 18, 
             'type'        => 'select',
-            'choices'     => $this::$font_array,
+            'choices'     => $this::$icon_array,
 
         ) ) );
         $wp_customize->add_setting( 'list1_content1', array(
@@ -444,12 +501,16 @@ class Aqueduct_Child_Customizer {
             'priority'    => 20,
         ) ) );
 
-    // ###########################################################################
-    //                            List 1 Item 2
-    // ###########################################################################
+/**
+ * 
+ *
+ * List 2 Item 2
+ * 
+ *
+ */
         $wp_customize->add_setting( 'list1_img2', array(
             'default'           => 'fa fa-envelope-o',
-            'sanitize_callback' => 'sanitize_text_field'
+            'sanitize_callback' => 'sanitize_select'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_img2', array(
             'label'       => esc_html__( 'Item 2 Icon', 'aqueduct-child' ),
@@ -457,7 +518,7 @@ class Aqueduct_Child_Customizer {
             'settings'    => 'list1_img2',
             'priority'    => 28, 
             'type'        => 'select',
-            'choices'     => $this::$font_array,
+            'choices'     => $this::$icon_array,
               
         ) ) );
         $wp_customize->add_setting( 'list1_content2', array(
@@ -483,12 +544,16 @@ class Aqueduct_Child_Customizer {
             'type'        => 'url',
             'priority'    => 30,
         ) ) );
-        // ###########################################################################
-        //                            List 1 Item 3
-        // ###########################################################################
+/**
+ * 
+ *
+ * List 2 Item 3
+ * 
+ *
+ */
         $wp_customize->add_setting( 'list1_img3', array(
             'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field'
+            'sanitize_callback' => 'sanitize_select'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_img3', array(
             'label'       => esc_html__( 'Item 3 Icon', 'aqueduct-child' ),
@@ -496,7 +561,7 @@ class Aqueduct_Child_Customizer {
             'settings'    => 'list1_img3',
             'priority'    => 48, 
             'type'        => 'select',
-            'choices'     => $this::$font_array,               
+            'choices'     => $this::$icon_array,               
         ) ) );
         $wp_customize->add_setting( 'list1_content3', array(
             'default'           => '',
@@ -521,12 +586,16 @@ class Aqueduct_Child_Customizer {
             'type'        => 'url',
             'priority'    => 50,
         ) ) );
-        // ###########################################################################
-        //                            List 1 Item 4
-        // ###########################################################################
+/**
+ * 
+ *
+ * List 2 Item 4
+ * 
+ *
+ */
         $wp_customize->add_setting( 'list1_img4', array(
             'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field'
+            'sanitize_callback' => 'sanitize_select'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_img4', array(
             'label'       => esc_html__( 'Item 4 Icon', 'aqueduct-child' ),
@@ -534,7 +603,7 @@ class Aqueduct_Child_Customizer {
             'settings'    => 'list1_img4',
             'priority'    => 58, 
             'type'        => 'select',
-            'choices'     => $this::$font_array,
+            'choices'     => $this::$icon_array,
              
         ) ) );
         $wp_customize->add_setting( 'list1_content4', array(
@@ -560,12 +629,16 @@ class Aqueduct_Child_Customizer {
             'type'        => 'url',
             'priority'    => 60,
         ) ) );
-        // ###########################################################################
-        //                            List 1 Item 5
-        // ###########################################################################
+/**
+ * 
+ *
+ * List 1 Item 5
+ * 
+ *
+ */
         $wp_customize->add_setting( 'list1_img5', array(
             'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field'
+            'sanitize_callback' => 'sanitize_select'
         ) );
         $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list1_img5', array(
             'label'       => esc_html__( 'Item 5 Icon', 'aqueduct-child' ),
@@ -573,7 +646,7 @@ class Aqueduct_Child_Customizer {
             'settings'    => 'list1_img5',
             'priority'    => 68, 
             'type'        => 'select',
-            'choices'     => $this::$font_array,              
+            'choices'     => $this::$icon_array,              
         ) ) );
         $wp_customize->add_setting( 'list1_content5', array(
             'default'           => '',
@@ -599,13 +672,41 @@ class Aqueduct_Child_Customizer {
             'priority'    => 70,
         ) ) );
     }
-        // ###########################################################################
-        //                       List 2 Item 1
-        // ###########################################################################
+
+
+/**
+ * 
+ *
+ * List 2
+ * 
+ *
+ */
+
         private function list2_content_section( $wp_customize ) {
+
+            $wp_customize->add_setting( 'list2_title', array(
+                'default'           => 'Hut',
+                'sanitize_callback' => 'sanitize_text_field'
+            ) );
+            $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_title', array(
+                'label'       => esc_html__( 'List Title', 'aqueduct-child' ),
+                'section'     => 'footer_list_2',
+                'settings'    => 'list2_title',
+                'priority'    => 15, 
+                'type'        => 'text',
+
+            ) ) );
+
+/**
+ * 
+ *
+ * List 2 Item 1
+ * 
+ *
+ */
             $wp_customize->add_setting( 'list2_img1', array(
                 'default'           => 'fa fa-home',
-                'sanitize_callback' => 'sanitize_text_field'
+                'sanitize_callback' => 'sanitize_select'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_img1', array(
                 'label'       => esc_html__( 'Item 1 Icon', 'aqueduct-child' ),
@@ -613,7 +714,7 @@ class Aqueduct_Child_Customizer {
                 'settings'    => 'list2_img1',
                 'priority'    => 18, 
                 'type'        => 'select',
-                'choices'     => $this::$font_array,
+                'choices'     => $this::$icon_array,
                   
             ) ) );
             $wp_customize->add_setting( 'list2_content1', array(
@@ -640,12 +741,16 @@ class Aqueduct_Child_Customizer {
                 'priority'    => 20,
             ) ) );
     
-        // ###########################################################################
-        //                            List 2 Item 2
-        // ###########################################################################
+/**
+ * 
+ *
+ * List 2 Item 2
+ * 
+ *
+ */
             $wp_customize->add_setting( 'list2_img2', array(
                 'default'           => 'fa fa-bed',
-                'sanitize_callback' => 'sanitize_text_field'
+                'sanitize_callback' => 'sanitize_select'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_img2', array(
                 'label'       => esc_html__( 'Item 2 Icon', 'aqueduct-child' ),
@@ -653,7 +758,7 @@ class Aqueduct_Child_Customizer {
                 'settings'    => 'list2_img2',
                 'priority'    => 28, 
                 'type'        => 'select',
-                'choices'     => $this::$font_array,            
+                'choices'     => $this::$icon_array,            
             ) ) );
             $wp_customize->add_setting( 'list2_content2', array(
                 'default'           => 'Hut Booking',
@@ -678,12 +783,16 @@ class Aqueduct_Child_Customizer {
                 'type'        => 'url',
                 'priority'    => 30,
             ) ) );
-        // ###########################################################################
-        //                            List 2 Item 3
-        // ###########################################################################
+/**
+ * 
+ *
+ * List 2 Item 3
+ * 
+ *
+ */
             $wp_customize->add_setting( 'list2_img3', array(
                 'default'           => 'fa fa-thumbs-up',
-                'sanitize_callback' => 'sanitize_text_field'
+                'sanitize_callback' => 'sanitize_select'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_img3', array(
                 'label'       => esc_html__( 'Item 3 Icon', 'aqueduct-child' ),
@@ -691,7 +800,7 @@ class Aqueduct_Child_Customizer {
                 'settings'    => 'list2_img3',
                 'priority'    => 38, 
                 'type'        => 'select',
-                'choices'     => $this::$font_array,              
+                'choices'     => $this::$icon_array,              
             ) ) );
             $wp_customize->add_setting( 'list2_content3', array(
                 'default'           => 'Kindred Clubs',
@@ -716,12 +825,16 @@ class Aqueduct_Child_Customizer {
                 'type'        => 'url',
                 'priority'    => 40,
             ) ) );
-        // ###########################################################################
-        //                            List 2 Item 4
-        // ###########################################################################
+/**
+ * 
+ *
+ * List 2 Item 4
+ * 
+ *
+ */
             $wp_customize->add_setting( 'list2_img4', array(
                 'default'           => '',
-                'sanitize_callback' => 'sanitize_text_field'
+                'sanitize_callback' => 'sanitize_select'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_img4', array(
                 'label'       => esc_html__( 'Item 4 Icon', 'aqueduct-child' ),
@@ -729,7 +842,7 @@ class Aqueduct_Child_Customizer {
                 'settings'    => 'list2_img4',
                 'priority'    => 48, 
                 'type'        => 'select',
-                'choices'     => $this::$font_array,           
+                'choices'     => $this::$icon_array,           
             ) ) );
             $wp_customize->add_setting( 'list2_content4', array(
                 'default'           => '',
@@ -754,12 +867,16 @@ class Aqueduct_Child_Customizer {
                 'type'        => 'url',
                 'priority'    => 50,
             ) ) );
-        // ###########################################################################
-        //                            List 2 Item 5
-        // ###########################################################################
+/**
+ * 
+ *
+ * List 2 Item 5
+ * 
+ *
+ */
             $wp_customize->add_setting( 'list2_img5', array(
                 'default'           => '',
-                'sanitize_callback' => 'sanitize_text_field'
+                'sanitize_callback' => 'sanitize_select'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list2_img5', array(
                 'label'       => esc_html__( 'Item 5 Icon', 'aqueduct-child' ),
@@ -767,7 +884,7 @@ class Aqueduct_Child_Customizer {
                 'settings'    => 'list2_img5',
                 'priority'    => 58, 
                 'type'        => 'select',
-                'choices'     => $this::$font_array,             
+                'choices'     => $this::$icon_array,             
             ) ) );
             $wp_customize->add_setting( 'list2_content5', array(
                 'default'           => '',
@@ -793,13 +910,44 @@ class Aqueduct_Child_Customizer {
                 'priority'    => 60,
             ) ) );
         }
-        // ##############################################################################
-        //                       List 3 Item 1
-        // ##############################################################################
+
+
+/**
+ * 
+ *
+ * List 3
+ * 
+ *
+ */
+
+
         private function list3_content_section( $wp_customize ) {
+
+            $wp_customize->add_setting( 'list3_title', array(
+                'default'           => 'Info',
+                'sanitize_callback' => 'sanitize_text_field'
+            ) );
+            $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_title', array(
+                'label'       => esc_html__( 'List Title', 'aqueduct-child' ),
+                'section'     => 'footer_list_3',
+                'settings'    => 'list3_title',
+                'priority'    => 15, 
+                'type'        => 'text',
+
+            ) ) );
+
+
+/**
+ * 
+ *
+ * List 3 Item 1
+ * 
+ *
+ */
+
             $wp_customize->add_setting( 'list3_img1', array(
                 'default'           => 'fa fa-user-secret',
-                'sanitize_callback' => 'sanitize_text_field'
+                'sanitize_callback' => 'sanitize_select'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_img1', array(
                 'label'       => esc_html__( 'Item 1 Icon', 'aqueduct-child' ),
@@ -807,7 +955,7 @@ class Aqueduct_Child_Customizer {
                 'settings'    => 'list3_img1',
                 'priority'    => 18, 
                 'type'        => 'select',
-                'choices'     => $this::$font_array,
+                'choices'     => $this::$icon_array,
                   
             ) ) );
             $wp_customize->add_setting( 'list3_content1', array(
@@ -834,12 +982,16 @@ class Aqueduct_Child_Customizer {
                 'priority'    => 20,
             ) ) );
     
-        // ###########################################################################
-        //                            List 3 Item 2
-        // ###########################################################################
+/**
+ * 
+ *
+ * List 3 Item 2
+ * 
+ *
+ */
             $wp_customize->add_setting( 'list3_img2', array(
                 'default'           => 'fa fa-eur',
-                'sanitize_callback' => 'sanitize_text_field'
+                'sanitize_callback' => 'sanitize_select'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_img2', array(
                 'label'       => esc_html__( 'Item 2 Icon', 'aqueduct-child' ),
@@ -847,7 +999,7 @@ class Aqueduct_Child_Customizer {
                 'settings'    => 'list3_img2',
                 'priority'    => 28, 
                 'type'        => 'select',
-                'choices'     => $this::$font_array,              
+                'choices'     => $this::$icon_array,              
             ) ) );
             $wp_customize->add_setting( 'list3_content2', array(
                 'default'           => 'Expedition Grant',
@@ -872,12 +1024,16 @@ class Aqueduct_Child_Customizer {
                 'type'        => 'url',
                 'priority'    => 30,
             ) ) );
-        // ###########################################################################
-        //                            List 3 Item 3
-        // ###########################################################################
+/**
+ * 
+ *
+ * List 3 Item 3
+ * 
+ *
+ */
             $wp_customize->add_setting( 'list3_img3', array(
                 'default'           => 'fa fa-graduation-cap',
-                'sanitize_callback' => 'sanitize_text_field'
+                'sanitize_callback' => 'sanitize_select'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_img3', array(
                 'label'       => esc_html__( 'Item 3 Icon', 'aqueduct-child' ),
@@ -885,7 +1041,7 @@ class Aqueduct_Child_Customizer {
                 'settings'    => 'list3_img3',
                 'priority'    => 38, 
                 'type'        => 'select',
-                'choices'     => $this::$font_array,              
+                'choices'     => $this::$icon_array,              
             ) ) );
             $wp_customize->add_setting( 'list3_content3', array(
                 'default'           => 'Constitution',
@@ -910,12 +1066,16 @@ class Aqueduct_Child_Customizer {
                 'type'        => 'url',
                 'priority'    => 40,
             ) ) );
-        // ###########################################################################
-        //                            List 3 Item 4
-        // ###########################################################################
+/**
+ * 
+ *
+ * List 3 Item 4
+ * 
+ *
+ */
             $wp_customize->add_setting( 'list3_img4', array(
                 'default'           => 'fa fa-eur',
-                'sanitize_callback' => 'sanitize_text_field'
+                'sanitize_callback' => 'sanitize_select'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_img4', array(
                 'label'       => esc_html__( 'Item 4 Icon', 'aqueduct-child' ),
@@ -923,7 +1083,7 @@ class Aqueduct_Child_Customizer {
                 'settings'    => 'list3_img4',
                 'priority'    => 48, 
                 'type'        => 'select',
-                'choices'     => $this::$font_array,
+                'choices'     => $this::$icon_array,
                   
             ) ) );
             $wp_customize->add_setting( 'list3_content4', array(
@@ -950,12 +1110,16 @@ class Aqueduct_Child_Customizer {
                 'priority'    => 50,
             ) ) );
     
-        // ###########################################################################
-        //                            List 3 Item 5
-        // ###########################################################################
+/**
+ * 
+ *
+ * List 3 Item 5
+ * 
+ *
+ */
             $wp_customize->add_setting( 'list3_img5', array(
                 'default'           => 'fa fa-users',
-                'sanitize_callback' => 'sanitize_text_field'
+                'sanitize_callback' => 'sanitize_select'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_img5', array(
                 'label'       => esc_html__( 'Item 5 Icon', 'aqueduct-child' ),
@@ -963,10 +1127,10 @@ class Aqueduct_Child_Customizer {
                 'settings'    => 'list3_img5',
                 'priority'    => 58, 
                 'type'        => 'select',
-                'choices'     => $this::$font_array,             
+                'choices'     => $this::$icon_array,             
             ) ) );
             $wp_customize->add_setting( 'list3_content5', array(
-                'default'           => 'Memebers Area',
+                'default'           => 'Members Area',
                 'sanitize_callback' => 'sanitize_text_field'
             ) );
             $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'list3_content5', array(
@@ -1007,9 +1171,9 @@ class Aqueduct_Child_Customizer {
     public function sanitize_select( $input, $setting ){
          
         $input = sanitize_key($input);
-        //get the list of possible select options 
+  
         $choices = $setting->manager->get_control( $setting->id )->choices;                         
-        //return input if valid or return default option
+
         return ( array_key_exists( $input, $choices ) ? $input : $setting->default );                
          
     }

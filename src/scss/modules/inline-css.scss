@@ -1,0 +1,56 @@
+
+/*--------------------------------------------------------------
+5.1 Links
+--------------------------------------------------------------*/
+a {
+    color: #0F73B8;
+    }
+    
+    
+    a:hover,
+    a:focus,
+    a:active{
+    color: #43AD60;
+    }
+    
+    // html{
+    //     font-family:Segoe UI;
+    // }
+    
+    .menu-footer ul ul li:hover > a,
+    .menu-footer ul ul li a:hover, .hentry .entry-meta, .menu-footer > ul > li:hover > a, .drag-social-button a:hover, .three-column-footer h2{
+      color: #43AD60;
+    }
+    .searchboxcontainer,
+    button,
+    input[type="button"],
+    input[type="reset"],
+    input[type="submit"],
+    .newsticker-holder span,
+    .slider-title,
+    .titlecatholder span,
+    .read-more-button a,
+    .paging .nav-links span,
+    .howl-email-subs-box,
+    .woocommerce #respond input#submit,
+    .woocommerce a.button,
+    .woocommerce button.button,
+    .woocommerce input.button,
+    .main-navigation ul ul,
+    .main-navigation ul li:hover,
+    .main-navigation ul .current-menu-item,
+    .tagcloud a:hover,
+    .drag-social-button-center ul li a:hover
+    {
+    background: #43AD60;
+    }
+    // .entry-content{
+    // font-size: 16px;
+    // }
+    /*--------------------------------------------------------------
+    5.1 Boxed Layout
+    --------------------------------------------------------------*/
+    .secondary-navigation .tinynav{
+        background: #43AD60;
+    }
+    

@@ -97,7 +97,9 @@
  h3.widget-title, 
  .main-navigation .tinynav,
  .titlecatholder,
- .srchcontainerin {
+ .srchcontainerin,
+ .cat-links a,
+ .tag-links a {
      background-color: var(--bg2);
  }
 
@@ -254,6 +256,10 @@
  }
  .srchcontainerin {
      box-shadow: -2px 2px 4px 0px rgba(0,0,0, 0.3);
+ }
+ .entry-content p {
+     padding-left: 16px;
+     padding-right: 16px;
  }
  
  

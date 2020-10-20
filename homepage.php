@@ -15,8 +15,18 @@ get_header();
 <div class="container">
 
 	<?php if( get_theme_mod("show_announcement") ) : ?>
-	<div class="emergency-announcement" style= "background-color: rgb(212, 0, 0); text-align: center; border-radius: 10px;">
+	<div class="emergency-announcement">
 		<p><?php echo esc_html__(get_theme_mod( 'announcement', '' ));?></p>
+		
+		<?php if( get_theme_mod( 'show_announce_button' ) ) : ?>
+							
+			<a class="link-announce" href="<?php echo esc_url(get_theme_mod( 'announce_link', '' ));?>" role="button">
+			<button class="announce-btn"><?php echo esc_html__(get_theme_mod( 'announce_btn_content' ));?>
+			</button>
+			</a>
+
+		<?php endif; ?>
+
 	</div>
 	<?php endif ?>
 	
@@ -41,7 +51,7 @@ get_header();
 							
 							<?php if( get_theme_mod( 'show_button2') ) : ?>
 							
-							<a class="btn-login" href="<?php echo esc_url(get_theme_mod( "button2_link", "" ));?>" role="button">
+							<a class="btn-login" href="<?php echo esc_url(get_theme_mod( "button2_link", '' ));?>" role="button">
 							<button class="homepage-btn"><?php echo esc_html__(get_theme_mod( "button2_content", '' ));?>
 							</button>
 							</a>

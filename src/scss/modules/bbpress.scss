@@ -15,6 +15,10 @@
 .bbp-topics-front ul.super-sticky{
     font-size: 1rem;
 }
+.bbp-body .bbp-forum-title,
+.bbp-topic-permalink {
+    font-size: 1.2rem;
+}
 
 /* ########################################################################################################### */
  /*                                                Font Colors                                                  */
@@ -169,17 +173,18 @@ input#bbp_search {
 }
 
 span.bbp-reply-post-date{
-    order:3;
+    order:1;
     width: fit-content;
     white-space: nowrap;
-    justify-self: right;
-    text-align: right;
+    justify-self: left;
+    text-align: left;
+    opacity: 0.7;
 }
 .bbp-reply-header a.bbp-reply-permalink {
-    order: 1;
+    order: 3;
     justify-self: left;
     width: fit-content;
-    text-align:left;
+    text-align:right;
     margin: 0;
 }
 span.bbp-admin-links{

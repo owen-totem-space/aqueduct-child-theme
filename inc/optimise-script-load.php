@@ -1,11 +1,16 @@
 <?php
-//######################################################################################################
-//         Optimise scripts/stylesheets loading on certain pages
-//######################################################################################################
+/**
+ * 
+ * 
+ * Optimise scripts and styles loading on certain pages
+ * 
+ *
+ */
 function control_script_load(){
     if(is_front_page() || is_home() || is_page_template(array('tabs.php', 'accordion.php'))){
         $styles = [
-            'bbp-default',
+            'pmpro_frontend',
+            'pmpro_print',
             'gdatt-attachments',
             'bbpress-wp-tweaks',
             'newsletter',
@@ -70,26 +75,16 @@ function control_script_load(){
         ];
         wp_dequeue_style($styles);
         wp_dequeue_script($scripts);
-        
-    wp_dequeue_style('responsive-lightbox-nivo_lightbox-css');
-    wp_dequeue_style('responsive-lightbox-nivo_lightbox-css-d');    
-    wp_dequeue_script('responsive-lightbox-nivo_lightbox');
-    wp_dequeue_script('responsive-lightbox-lite-script');
-            
+        wp_deregister_style('bbp-default');
+
     }
 }
 add_filter('wp_enqueue_scripts', 'control_script_load', 100);
 
-
-
-//#########################################################################################################
-//                                       JQuery UI Pages
-//#########################################################################################################
-function add_jquery_ui(){
-    if(is_page_template(array('tabs.php', 'accordion.php'))){
-
-    wp_enqueue_script( 'jquery-ui-tabs');
-    wp_enqueue_script( 'jquery-ui-accordion');
+function homepage_dequeue(){
+    if(is_front_page()){
+        wp_dequeue_style('wp-block-library');
     }
+
 }
-add_action ( 'wp_enqueue_scripts', 'add_jquery_ui' );
+add_action('wp_enqueue_scripts', 'homepage_dequeue', 100);

@@ -1,7 +1,11 @@
 <?php
-//#######################################################################################################
-//                                Load Parent Theme & Child Theme CSS
-//#######################################################################################################
+/**
+ * 
+ * Load parent theme style.css
+ * 
+ * Add child theme styles,scripts and files
+ *
+ */
 
 function my_theme_enqueue_styles() {
     $parenthandle = 'drag-themes-style'; 
@@ -12,17 +16,19 @@ function my_theme_enqueue_styles() {
         $theme->parent()->get('Version 2.0.3')
     );
 
-    wp_enqueue_style( 'minified-style', get_stylesheet_directory_uri() . '/dist/css/styles.min.css',
+    wp_enqueue_style( 'minified-style', get_stylesheet_directory_uri() . '/build/css/styles.min.css',
         array($parenthandle)
     );
 
-    wp_enqueue_script('all-js', get_stylesheet_directory_uri() . '/dist/js/all.js', array('jquery'), '', true);
+    wp_enqueue_script('main-js', get_stylesheet_directory_uri() . '/build/js/main.min.js', array('jquery'), '', true);
+
+    wp_enqueue_script('modified-dragjs-js', get_stylesheet_directory_uri() . '/build/js/modified-dragjs.min.js', array('jquery'), '', true);
 
     wp_enqueue_style( 'fonts-roboto', 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&display=swap' );
 }
 add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
 
-include get_stylesheet_directory() . '/inc/inserted-footer.php';
+include get_stylesheet_directory() . '/inc/custom-footer.php';
 
 include get_stylesheet_directory() . '/inc/style-setup.php';
 
@@ -31,7 +37,37 @@ include get_stylesheet_directory() . '/inc/optimise-script-load.php';
 require get_stylesheet_directory() . '/inc/aqueduct-child-customizer.php';
 new Aqueduct_Child_Customizer();
 
+/**
+ * 
+ * 
+ * Add jquery ui on tab and accordion pages
+ * 
+ *
+ */
+function add_jquery_ui(){
+    if(is_page_template(array('tabs.php', 'accordion.php'))){
 
+    wp_enqueue_script( 'jquery-ui-tabs');
+    wp_enqueue_script( 'jquery-ui-accordion');
+    wp_enqueue_script( 'jquery-ui-child', get_stylesheet_directory_uri() . '/build/js/jquery-ui-child.min.js',     
+        array(
+            'jquery',
+            'jquery-ui-core',
+            'jquery-ui-accordion',
+            'jquery-ui-tabs'), '', true );
+    }
+}
+add_action ( 'wp_enqueue_scripts', 'add_jquery_ui' );
+
+
+
+/**
+ * 
+ * 
+ * Remove parent theme scripts. These are included in child theme scripts
+ * 
+ * 
+ */
 
 function deregister_howlthemes(){    
     
@@ -43,14 +79,15 @@ function deregister_howlthemes(){
 }
 add_action('wp_enqueue_scripts','deregister_howlthemes', 50);
 
+/**
+ * Remove wordpress emoji support for performace reasons
+ */
 
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
 /**
- * 
  * customjs-customize just added the 5 star rating logo in customizer
- * 
  */
 
 function deregister_customize_script(){
@@ -60,10 +97,16 @@ function deregister_customize_script(){
 add_action( 'customize_controls_enqueue_scripts', 'deregister_customize_script', 20 );
 
 
-// #######################################################################################################
-//                            force scripts to load in footer instead of header
-// #######################################################################################################
+/**
+ * 
+ * 
+ * Move scripts to load in footer instead of head
+ * 
+ * 
+ */
+
 function move_jquery_to_footer() {
+
     wp_scripts()->add_data( 'jquery', 'group', 1 );
     wp_scripts()->add_data( 'jquery-core', 'group', 1 );
     wp_scripts()->add_data( 'jquery-migrate', 'group', 1 );
@@ -71,22 +114,24 @@ function move_jquery_to_footer() {
 add_action( 'wp_enqueue_scripts', 'move_jquery_to_footer' );
 
 
-
-function load_litebox_footer(){    
-    wp_enqueue_script('responsive-lightbox-nivo_lightbox',  plugins_url() . ('/responsive-lite-box/assets/nivo-lightbox/nivo-lightbox.min.js'), array('jQuery'), '', true);
-    wp_enqueue_script('responsive-lightbox-lite-script',  plugins_url() . ('/responsive-lite-box/assets/inc/script.js'), array('jQuery'), '', true);
+function move_litebox_footer(){    
     
     wp_enqueue_script('responsive-lightbox',  plugins_url() . ('/responsive-lightbox/js/front.js'), array('jQuery'), '', true);
     wp_enqueue_script('responsive-lightbox-infinite-scroll',  plugins_url() . ('/responsive-lightbox/assets/infinitescroll/infinite-scroll.pkgd.min.js'), array('jQuery'), '', true);
     wp_enqueue_script('responsive-lightbox-swipebox',  plugins_url() . ('/responsive-lightbox/assets/swipebox/jquery.swipebox.min.js'), array('jQuery'), '', true);
 }
-add_action( 'wp_enqueue_scripts', 'load_litebox_footer' );
+add_action( 'wp_enqueue_scripts', 'move_litebox_footer' );
 
 
 
-// #######################################################################################################
-//                            Add pluginUpdateChecker
-// #######################################################################################################
+/**
+ * 
+ *
+ * Plugin update checker by TahnisElsts:
+ * https://github.com/YahnisElsts/plugin-update-checker
+ * 
+ *
+ */
 
 require 'plugin-update-checker-4.10/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
