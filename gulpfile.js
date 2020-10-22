@@ -22,8 +22,7 @@ const browserSync       = require('browser-sync').create();
 const stylesSrc         = './src/scss/*.scss';
 const stylesBuild       = './build/css/';
 
-const jsSrc             = ['./src/js/main.js', './src/js/jquery-ui-child.js'];
-const jsSrcNoBabel         = ['./src/js/modified-dragjs.js']
+const jsSrc             = './src/js/mainJS/*.js';
 const jsBuild           = './build/js/';
 
 const stylesWatch       = './src/scss/**/*.scss';
@@ -46,12 +45,14 @@ function jsBabel(){
     return src(jsSrc)
         // .pipe(sourcemaps.init())
         .pipe(babel())
-        .pipe(uglify())
+        .pipe(concat('main.js'))
+        .pipe(uglify())        
         .pipe(rename( {suffix: '.min'} ))
         .pipe( dest(jsBuild) )
 }
+
 function jsNoBabel(){
-    return src(jsSrcNoBabel)
+    return src(['./src/js/otherJS/modified-dragjs.js', './src/js/otherJS/jquery-ui-child.js'])
         .pipe(uglify())
         .pipe(rename( {suffix: '.min'} ))
         .pipe( dest(jsBuild) )

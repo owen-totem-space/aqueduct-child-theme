@@ -100,28 +100,36 @@ add_action( 'customize_controls_enqueue_scripts', 'deregister_customize_script',
 /**
  * 
  * 
- * Move scripts to load in footer instead of head
+ * Move scripts to footer instead of head
  * 
  * 
  */
 
-function move_jquery_to_footer() {
+function move_scripts_to_footer() {
 
     wp_scripts()->add_data( 'jquery', 'group', 1 );
     wp_scripts()->add_data( 'jquery-core', 'group', 1 );
     wp_scripts()->add_data( 'jquery-migrate', 'group', 1 );
-}
-add_action( 'wp_enqueue_scripts', 'move_jquery_to_footer' );
-
-
-function move_litebox_footer(){    
-    
     wp_enqueue_script('responsive-lightbox',  plugins_url() . ('/responsive-lightbox/js/front.js'), array('jQuery'), '', true);
     wp_enqueue_script('responsive-lightbox-infinite-scroll',  plugins_url() . ('/responsive-lightbox/assets/infinitescroll/infinite-scroll.pkgd.min.js'), array('jQuery'), '', true);
     wp_enqueue_script('responsive-lightbox-swipebox',  plugins_url() . ('/responsive-lightbox/assets/swipebox/jquery.swipebox.min.js'), array('jQuery'), '', true);
 }
-add_action( 'wp_enqueue_scripts', 'move_litebox_footer' );
+add_action( 'wp_enqueue_scripts', 'move_scripts_to_footer' );
 
+function dark_mode_cookie($classes){
+
+    $themeClass = '';
+        if (!empty($_COOKIE['theme'])) {
+            if ($_COOKIE['theme'] == 'dark') {
+                $themeClass = 'darkmode';
+            } else if ($_COOKIE['theme'] == 'light') {
+                $themeClass = '';
+        }  
+    }
+    return array_merge($classes, array($themeClass));
+
+}
+add_filter( 'body_class', 'dark_mode_cookie' );
 
 
 /**

@@ -1,20 +1,34 @@
 # Aqueduct Child Theme
 
 ## Added Features
+
+<br>
+
 * [Nav Menus](#nav-menus)
 * [Static Homepage](#static-homepage)
 * [Footer](#footer)
 * [Page Templates](#page-templates)
     * Tab Page
     * Accordion Page
-* [Scroll Arrows](scroll-arrows)
+* [Scroll Arrows](#scroll-arrows)
+* [Dark Mode](#dark-mode)
+
+<br>
+
+#### Notes:
+
 * [Recommended Actions](#recommended-actions)
 * [Performance](#performance)
 * [Updating](#updating)
+* [Styling](#styling)
+
+<br>
+<br>
 
 ---
 
 ## Nav Menus
+
 1. Parent menu items should be unclickable
 
     This is achieved by setting the link to the parent item as "#" and simply adding a label.
@@ -33,6 +47,9 @@ This is required to allow dropdown functionality of the sidemenu. It also brings
 
 Note: Please do not add 8 nav menu items. 4-5 should be the max. They may not fit if the words are too long anyway.
 
+<br>
+<br>
+
 ---
 
 
@@ -40,13 +57,16 @@ Note: Please do not add 8 nav menu items. 4-5 should be the max. They may not fi
 ## Static Homepage
 1. Content is editable
 
-2. I've included up to 3 buttons. 
+2. Included up to 3 buttons
 
 3. The image can be changed
 
-4. I've included an "Emergency Announcement" section to appear above the image. There is a link button available.
+4. Included an "Emergency Announcement" section to appear above the image. There is a link button available
 
 These are controllable via the appearance -> customize menu. Click into "IMC Homepage"
+
+<br>
+<br>
 
 ---
 
@@ -60,10 +80,15 @@ These are controllable via the appearance -> customize menu. Click into "IMC Hom
 
 3. Logo and social media are hardcoded at the moment.
 
+<br>
+
 These are controllable via the appearance -> customize menu.
 Click "IMC Footer"
 
 Benefits: An extra navigation area to decentralize some of the items from the current nav menus. It also looks pretty nice and frames pages better when a website has a good footer. 
+
+<br>
+<br>
 
 ---
 
@@ -76,24 +101,40 @@ Benefits: An extra navigation area to decentralize some of the items from the cu
 
     Tabbed pages turn into accordions on smaller screens.
 
+<br>
+
 How to use: Create a page. Select "tab page" as the "page template". Any pages who have this page set as their parent page will show on this page. Horizontal space is limited by the page titles. The will create a second row if the titles are too long.
+
+<br>
 
 2. Accordion Pages
 
     Accordion pages show as accordion at all screen sizes
 
+<br>
+
 How to use: Same as tab page but select accordion page as "page template" on parent page.
 
-
+<br>
+<br>
 
 ---
-
 
 
 
 ## Scroll Arrows
 
 Not much to say about them. They help users scroll to top or bottom for smoother access to navigation menus/footer menus.
+
+<br>
+<br>
+
+---
+
+## Dark Mode
+
+
+<br>
 
 ---
 
@@ -124,6 +165,10 @@ Not much to say about them. They help users scroll to top or bottom for smoother
 
     These __significantly__ impact page load speed
 
+* Deactivate/Remove BSP plugin for better performance. Anything it does can be coded in very easily and more efficiently. 
+
+<br>
+<br>
 
 ---
 
@@ -134,25 +179,26 @@ Not much to say about them. They help users scroll to top or bottom for smoother
 * Removed dynamic CSS from header. Quicker page load time.
 * Moved scripts to the footer. Quicker page load time.
 * Optimized script/css/plugin loading on homepage, blog page and accordion/tab pages.
+* All inputs in customizer and on pages has been sanitized and validated.
 
+<br>
 
-
-
-
-### Homepage
+#### Homepage
 
 Images are often the main culprit of a slow page load, especially when users/blog posters don't optimize images before upload (616kB,284kB and 263kB is the largest at the moment). 34 images are downloaded on every page visit (depending on caching etc.) and 34 HTTP requests to the server.
 
 Images are also the most likely place to get 404 errors. These are the biggest addition to slow page load.
 
- Currently there are approx 65 HTTP requests including 34 images and plugin stylesheets and javscript files all loading on the current homepage. This has to be processed just to access the site. This is reduced to about 20 HTTP requests and control over what loads on the page by adding the static homepage.
+ Currently there are approx 65 HTTP requests including 34 images, plugin stylesheets and javscript files all loading on the current homepage. This has to be processed just to access the site. This is reduced to about 20 HTTP requests and control over what loads on the page by adding the static homepage.
 
  There are also aesthetic and UX benefits.
 
+<br>
+<br>
+
 ---
 
-
-### Tab/Accordion Pages
+#### Tab/Accordion Pages
 
 These pages allow the content of all the pages to be loaded at once. 
 
@@ -160,10 +206,10 @@ It does not trigger a page reload when you want to view another tab. Since text 
 
 It looks much better on mobile too and is easier to navigate. It also allows items to be removed from the nav menus and put on one page.
 
+<br>
+<br>
+
 ---
-
-
-
 
 ## Updating
 
@@ -174,4 +220,16 @@ It looks much better on mobile too and is easier to navigate. It also allows ite
 3. I would not expect much in the way of issues, considering the kind of changes I've made.
 
 4. In reality it would probably be better to use another theme or develop another theme to make any significant changes in future. This is just a child theme reliant on the code of the Aqueduct Theme.
+
+<br>
+<br>
+
 ---
+
+## Styling
+
+Removed options for changing link colors, fonts etc from the appearance -> customize menu. 
+
+These have been included in the CSS for performance reasons and simplicity. They are never changed anyway. IMC logo green and blue is what is used on the site. 
+
+Font sizes can still be changed in posts etc as normal.

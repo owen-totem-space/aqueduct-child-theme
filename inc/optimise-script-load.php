@@ -76,6 +76,7 @@ function control_script_load(){
         wp_dequeue_style($styles);
         wp_dequeue_script($scripts);
         wp_deregister_style('bbp-default');
+        wp_dequeue_style('bbp-default');
 
     }
 }
