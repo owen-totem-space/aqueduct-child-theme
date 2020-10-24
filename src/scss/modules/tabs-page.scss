@@ -85,6 +85,9 @@
 .minimalTabs > ul > li a:focus {
     outline: none;
 }
+.minimalTabs > ul > li.ui-state-active a{
+    color: #43AD60;
+}
 .minimalTabs > ul > li a span {
     position: relative;
     top: -0.5em;
@@ -102,13 +105,13 @@
 background: var(--bg1);
 box-shadow: inset 3px 3px 3px #43ad5f4f, inset 1px 1px 1px #43ad5f4f;;
 }
-.darkmode .minimalTabs > ul > li a {
-color: var(--txt1);
-}
-.darkmode .minimalTabs > ul > li a:hover,
-.darkmode .minimalTabs > ul > li a:focus {
-color: #43AD60;
-}
+// .darkmode .minimalTabs > ul > li a {
+// color: var(--txt1);
+// }
+// .darkmode .minimalTabs > ul > li a:hover,
+// .darkmode .minimalTabs > ul > li a:focus {
+// color: #43AD60;
+// }
 @media only screen and (max-width: 530px){
     .minimalTabs {
         display: none;

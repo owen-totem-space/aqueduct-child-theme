@@ -43,7 +43,9 @@
 
         Up to dropdown8
 
-This is required to allow dropdown functionality of the sidemenu. It also brings the added benefit of removing users ability to mistakenly click the nav menu label and being brought to a dead/useless page.
+    This is required to allow dropdown functionality of the sidemenu. It also brings the added benefit of removing users ability to mistakenly click the nav menu label and being brought to a dead/useless page.
+
+3. It is no longer possible to have submenus within menus. The menu area of the admin panel will still allow you to add them but they won't work. The side menu wouldn't work with them. Also, with proper menu structure, they shouldn't be necessary.
 
 Note: Please do not add 8 nav menu items. 4-5 should be the max. They may not fit if the words are too long anyway.
 
@@ -61,9 +63,28 @@ Note: Please do not add 8 nav menu items. 4-5 should be the max. They may not fi
 
 3. The image can be changed
 
-4. Included an "Emergency Announcement" section to appear above the image. There is a link button available
+4. Included an "Emergency Announcement" section to appear above the image. There is a link button available to turn on or off.
 
-These are controllable via the appearance -> customize menu. Click into "IMC Homepage"
+Edit via the appearance -> customize menu. Click into "IMC Homepage"
+
+<br>
+
+How to use:
+
+Step 1:
+* Create a new page, give it a title of "Homepage" (title doesn't matter, but this will asign it a recognisable slug)
+* In "page attributes" -> "template" select "Homepage"
+* Create another new page, give it a title of "Blog" (again title doesn't matter but this will be your blog page)
+
+<br>
+
+Step 2
+
+* In Admin menu go to Settings -> Reading
+* In "Your homepage displays" select "a static page"
+* Now select "Homepage" as homepage and "Blog" as posts page
+* Now add a menu item called "Latest Posts" to your menu and link to the "Blog" page.
+
 
 <br>
 <br>
@@ -82,8 +103,7 @@ These are controllable via the appearance -> customize menu. Click into "IMC Hom
 
 <br>
 
-These are controllable via the appearance -> customize menu.
-Click "IMC Footer"
+Edit via appearance -> customize menu -> "IMC Footer"
 
 Benefits: An extra navigation area to decentralize some of the items from the current nav menus. It also looks pretty nice and frames pages better when a website has a good footer. 
 
@@ -133,6 +153,7 @@ Not much to say about them. They help users scroll to top or bottom for smoother
 
 ## Dark Mode
 
+* Uses cookie to store dark/light mode preference
 
 <br>
 
@@ -214,12 +235,6 @@ It looks much better on mobile too and is easier to navigate. It also allows ite
 ## Updating
 
 1. It's possible to push updates from the github repository. This will prompt a theme update in the same way that a wordpress repository theme would. Any issues or additional features can be addressed with updates.
-
-2. It's possible to transfer ownership of the github repo in future, should that be necessary. All code can be viewed and other people can contribute if necessary.
-
-3. I would not expect much in the way of issues, considering the kind of changes I've made.
-
-4. In reality it would probably be better to use another theme or develop another theme to make any significant changes in future. This is just a child theme reliant on the code of the Aqueduct Theme.
 
 <br>
 <br>

@@ -1,4 +1,4 @@
-function detectTheme() {
+function toggleDarkMode() {
 
     const btn = document.querySelector("#dark-mode-toggle");
     const btnContent = document.querySelector("#darkButton");
@@ -27,8 +27,8 @@ function detectTheme() {
             theme = "light";
             btnContent.innerHTML = "<i class='fa fa-moon-o' aria-hidden='true'></i> Dark"
         }
-        document.cookie = `theme=${theme}; max-age=31536000; path=/;`
+        document.cookie = `theme=${theme}; max-age=31536000; path=/;`;
     });
 }
   
-detectTheme();
+toggleDarkMode();

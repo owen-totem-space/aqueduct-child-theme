@@ -36,7 +36,7 @@ function toggleNav() {
 //#######################################################################################
 function dropdownMenus(){
   
-    const submenu = document.querySelector('.sub-menu');
+    let submenu = document.querySelector('.sub-menu');
     const dropdown1 = document.querySelector('.dropdown1 > a');
     const dropdown2 = document.querySelector('.dropdown2 > a');
     const dropdown3 = document.querySelector('.dropdown3 > a');

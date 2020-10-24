@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
       animate: 600,
       activate: function( event, ui ) {
         if(!$.isEmptyObject(ui.newHeader.offset())) {
-            $('html:not(:animated), body:not(:animated)').animate({ scrollTop: ui.newHeader.offset().top }, 'slow');
+            $('html:not(:animated), body:not(:animated)').animate({ scrollTop: ui.newHeader.offset().top - 54 }, 'slow');
         }
     }
     });
