@@ -20,7 +20,7 @@ $newNum = 1;
     <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
             <div class="accordion-parent-title"><h2><?php the_title(); ?></h2></div>
-            <div class= "accordion-parent-content"> <?php the_content(); ?> </div>
+            <div class= "accordion-parent-content"><?php the_content(); ?></div>
 
             <!--      Accordion Start          -->   
             <div id="accordion" class= "minimalAccordion fullpage">

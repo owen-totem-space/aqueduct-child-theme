@@ -117,16 +117,21 @@
     order: 4;
     flex-basis: 50%;
 }
+.logo-img-footer img {
+    width: 90px;
+    height: 90px;
+}
 .logo-img-footer{
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
+    margin-left: 6px;
     border-radius: 50%;
     background: var(--bg2);
     opacity: 0.8;
-    transform: scale(.9);
+    // transform: scale(.9);
     transition: 
-        opacity 250ms ease-in;
+        opacity 250ms ease-out;
 }
 .logo-img-footer::before{
     content: '';
@@ -139,8 +144,8 @@
     background-color: #43ad5f;
     transform: scale(0.7);
     transition:
-        box-shadow 300ms ease-in,
-        transform 150ms ease-in;
+        box-shadow 250ms ease-out,
+        transform 250ms ease-out;
 }
 .logo-img-footer:hover::before {
     transform: scale(1);

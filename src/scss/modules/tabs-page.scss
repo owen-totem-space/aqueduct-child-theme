@@ -15,10 +15,6 @@
     padding: 8px 24px;
     min-height: 200px;
 }
-.darkTab {
-    background: var(--bg1);
-    color: var(--txt1);
-}
 .minimalTabs > ul {
     display: flex;
     flex-direction: row;
@@ -31,8 +27,12 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
+.darkmode .minimalTabs > ul {
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+}
 .minimalTabs > ul > li {
     display: block;
+    background-color: var(--bg1);
     padding: 0.6em 0.5em;
     position: relative;
     white-space: nowrap;
@@ -61,7 +61,7 @@
 }
 .minimalTabs > ul > li:after {
     content: "";
-    background: #fafafa;
+    background-color: var(--bg1);
     position: absolute;
     width: 12px;
     height: 12px;
@@ -69,49 +69,20 @@
     bottom: -6px;
     margin-left: -6px;
     transform: rotate(45deg);
-    box-shadow: inset 3px 3px 3px #43ad5f4f, inset 1px 1px 1px #43ad5f4f;;
+    box-shadow: inset 3px 3px 3px #43ad5f4f, inset 1px 1px 1px #43ad5f4f;
 }
-.minimalTabs > ul > li:focus {
-    outline: none;
-}
-.minimalTabs > ul > li a {
-    color: var(--txt1);
-    text-decoration: none;
-}
-.minimalTabs > ul > li a:hover,
-.minimalTabs > ul > li a:focus {
-    color: #43AD60;
-}  
+.minimalTabs > ul > li:focus,
 .minimalTabs > ul > li a:focus {
     outline: none;
 }
-.minimalTabs > ul > li.ui-state-active a{
+.minimalTabs > ul > li.ui-state-active a {
     color: #43AD60;
 }
 .minimalTabs > ul > li a span {
     position: relative;
     top: -0.5em;
 }
-.darkmode .minimalTabs > ul {
-    border-bottom-color: rgba(255, 255, 255, 0.3);
-}
-.minimalTabs.dark > ul > li {
-    background: var(--bg1);
-}
-.darkmode .minimalTabs > ul > li:before {
-    box-shadow: 0 2px 3px #43ad5f4f;;
-}
-.darkmode .minimalTabs > ul > li:after {
-background: var(--bg1);
-box-shadow: inset 3px 3px 3px #43ad5f4f, inset 1px 1px 1px #43ad5f4f;;
-}
-// .darkmode .minimalTabs > ul > li a {
-// color: var(--txt1);
-// }
-// .darkmode .minimalTabs > ul > li a:hover,
-// .darkmode .minimalTabs > ul > li a:focus {
-// color: #43AD60;
-// }
+
 @media only screen and (max-width: 530px){
     .minimalTabs {
         display: none;

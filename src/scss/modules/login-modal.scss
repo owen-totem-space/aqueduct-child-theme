@@ -1,0 +1,99 @@
+.modal-container {
+    position: fixed;
+    width: 100%;
+    height: calc(100vh + 10px);
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 500ms;
+    z-index: 20000;
+}
+.modal-active{
+    visibility: visible;
+    opacity: 1;
+}
+.modal-body img {
+    margin-bottom: 8px;
+}
+.modal-body{
+    position: relative;
+    background-color: var(--bg4);
+    color: var(--txt1);
+    padding: 16px 16px 24px 24px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0, 0.8);
+    text-shadow: none;
+    font-size: 1rem;
+    font-weight: 400;
+    min-width: 300px;
+    max-width: 350px;
+    height: fit-content;
+    overflow: auto;
+    margin: 0 24px;
+}
+.darkmode .modal-body {
+    background-color: var(--bg1);
+} 
+.modal-body  #loginform label {
+    font-weight: 400;
+}
+.modal-body #loginform input[type=text],
+.modal-body #loginform input[type=password]{
+    width: 100%;
+}
+.modal-close {
+    position: absolute;
+    top: 0px;
+    right: 16px;
+    cursor: pointer;
+    font-size: 2rem;
+}
+.modal-body .alt-links a {
+    text-decoration: underline;
+    color: var(--txt1)
+}
+.modal-body .alt-links a:hover {
+    color: var(--theme-clr);
+}
+.modal-body .alt-links {
+    position: relative;
+    margin-top: 24px;
+    padding-top: 16px;
+}
+.alt-links:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1px;
+    width: 95%;
+    background-color: var(--bg2);
+}
+.modal-open {
+    // position: relative;
+    touch-action: none;
+    // -webkit-overflow-scrolling: none;
+    overflow: hidden;
+    overscroll-behavior: none;
+    padding-right: 16px;
+}
+@media only screen and (max-width: 530px){
+    .modal-body {
+        top: 20px;
+    }
+    .modal-container {
+        align-items: normal;
+    }
+    .modal-open {
+        padding-right: 0;
+    }
+}
+
+.site-branding img, .site-branding-best img {
+    max-width: 75px;
+}

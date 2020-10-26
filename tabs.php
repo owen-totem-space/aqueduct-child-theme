@@ -21,7 +21,7 @@ $newNum = 1;
         <main id="main" class="site-main" role="main">
 
             <div class="darkTab">
-                <div id="minimalTabs" class="minimalTabs dark">
+                <div id="minimalTabs" class="minimalTabs">
                     <ul>
 
     <?php while($childpages->have_posts()) : $childpages->the_post(); ?>

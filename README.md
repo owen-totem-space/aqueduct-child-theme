@@ -248,3 +248,5 @@ Removed options for changing link colors, fonts etc from the appearance -> custo
 These have been included in the CSS for performance reasons and simplicity. They are never changed anyway. IMC logo green and blue is what is used on the site. 
 
 Font sizes can still be changed in posts etc as normal.
+
+Recommended logo size of 150 x 150 is being broken by the Aqueduct theme and making the image blurry. I've adjusted the image size which will sharpen it even if a smaller logo is used. Current image is 300x300, but 150x150 should be sufficient. It doesn't save much but every little bit counts. I've included logo images in the img folder.

@@ -190,31 +190,31 @@ class Aqueduct_Child_Customizer {
  * 
  *
  */
-        $wp_customize->add_setting( 'button1_content', array(
-            'default'           => 'Log In',
-            'sanitize_callback' => 'sanitize_text_field'
-        ) );
-        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'button1_content', array(
-            'label'       => esc_html__( 'Button 1 Label', 'aqueduct-child' ),
-            'section'     => 'homepage_buttons',
-            'settings'    => 'button1_content',
-            'type'        => 'text',
-            'priority'    => 13
-        ) ) );    
+        // $wp_customize->add_setting( 'button1_content', array(
+        //     'default'           => 'Log In',
+        //     'sanitize_callback' => 'sanitize_text_field'
+        // ) );
+        // $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'button1_content', array(
+        //     'label'       => esc_html__( 'Button 1 Label', 'aqueduct-child' ),
+        //     'section'     => 'homepage_buttons',
+        //     'settings'    => 'button1_content',
+        //     'type'        => 'text',
+        //     'priority'    => 13
+        // ) ) );    
  
 
-        $wp_customize->add_setting( 'button1_link', array(
-            'default'           => '',
-            'sanitize_callback' => 'esc_url_raw'
-        ) );
-        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'button1_link', array(
-            'label'       => esc_html__( 'Button 1 Link', 'aqueduct-child' ),
-            'description' => esc_html__( 'Paste link for button', 'aqueduct-child' ),
-            'section'     => 'homepage_buttons',
-            'settings'    => 'button1_link',
-            'type'        => 'url',
-            'priority'    => 14
-        ) ) );
+        // $wp_customize->add_setting( 'button1_link', array(
+        //     'default'           => '',
+        //     'sanitize_callback' => 'esc_url_raw'
+        // ) );
+        // $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'button1_link', array(
+        //     'label'       => esc_html__( 'Button 1 Link', 'aqueduct-child' ),
+        //     'description' => esc_html__( 'Paste link for button', 'aqueduct-child' ),
+        //     'section'     => 'homepage_buttons',
+        //     'settings'    => 'button1_link',
+        //     'type'        => 'url',
+        //     'priority'    => 14
+        // ) ) );
 
 
         

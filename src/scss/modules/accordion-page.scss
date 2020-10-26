@@ -1,7 +1,7 @@
 /* ################################################################################################### */
- /*                                       Accordion                                                 */
- /* ################################################################################################### */
- .minimalAccordion {
+/*                                       Accordion                                                 */
+/* ################################################################################################### */
+.minimalAccordion {
     min-height: 240px;
     padding-bottom: 32px;
 }
@@ -43,7 +43,7 @@
     box-shadow: 0 0px 8px 0px #43ad5f23;
     border-left: 2px solid #43AD60;
 }
-.accordion-title > div{
+.accordion-title > .title-text{
     display: flex;
     flex-basis: 100%;
     justify-content: space-between;
@@ -67,7 +67,7 @@
 .accordion-title.ui-state-active .accordion-arrow {
     transform: rotate(180deg);
 }
-@media only screen and (min-width: 530px){
+@media only screen and (min-width: 531px){
     .minimalAccordion.responsive {
         display:none;
     } 

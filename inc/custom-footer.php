@@ -5,7 +5,7 @@ function imc_footer(){?>
 
     <div class="footer-container container">
         <div class="logo-container">
-                <a class="logo-img-footer"href="<?php echo esc_url(home_url()); ?>"><img src= <?php echo esc_url(get_stylesheet_directory_uri()) . '/img/logoBW-100x100.png'; ?> alt="LOGO">
+                <a class="logo-img-footer"href="<?php echo esc_url(home_url()); ?>"><img src= <?php echo esc_url(get_stylesheet_directory_uri()) . '/img/logoBW-180x180.png'; ?> alt="LOGO">
                 <div class="overlay"></div></a>
             <div class="social">
                 <a href="https://www.facebook.com/IrishMountaineeringClub">
