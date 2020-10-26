@@ -19,6 +19,8 @@ $newNum = 1;
 <div class="main-outer container">
     <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
+        <div class="tabs-parent-title"><h2><?php the_title(); ?></h2></div>
+        <div class= "tabs-parent-content"><?php the_content(); ?></div>
 
             <div class="darkTab">
                 <div id="minimalTabs" class="minimalTabs">

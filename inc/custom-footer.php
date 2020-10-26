@@ -19,7 +19,7 @@ function imc_footer(){?>
         <div class="darkButton">
             <input type="checkbox" id="dark-mode-toggle" class="darkMode"/>
             <label for="dark-mode-toggle" class="switch"></label>
-            <h3 id=darkButton></h3>
+            <h3 id=darkButton><i class='fa fa-moon-o' aria-hidden='true'></i> Dark</h3>
         </div>
         <div class="footer-first">
             <?php if(get_theme_mod( 'list1_title' )) : ?>

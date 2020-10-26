@@ -27,6 +27,19 @@
 
 ---
 
+## How to install
+
+Select "Code" -> download zip at top of this section. In wordpress admin, go to Appearance -> Themes -> Add New (at top) -> Upload theme (at top) -> Choose File -> upload the zip folder that was downloaded then select activate theme. Voila.
+
+<br>
+
+There will then be a few things to select and activate as listed below.
+
+<br>
+
+---
+
+
 ## Nav Menus
 
 1. Parent menu items should be unclickable
@@ -43,7 +56,7 @@
 
         Up to dropdown8
 
-    This is required to allow dropdown functionality of the sidemenu. It also brings the added benefit of removing users ability to mistakenly click the nav menu label and being brought to a dead/useless page.
+    * This is required to allow dropdown functionality of the sidemenu. It also brings the added benefit of removing users ability to mistakenly click the nav menu label and being brought to a dead/useless page.
 
 3. It is no longer possible to have submenus within menus. The menu area of the admin panel will still allow you to add them but they won't work. The side menu wouldn't work with them. Also, with proper menu structure, they shouldn't be necessary.
 
@@ -57,19 +70,8 @@ Note: Please do not add 8 nav menu items. 4-5 should be the max. They may not fi
 
 
 ## Static Homepage
-1. Content is editable
 
-2. Included up to 3 buttons
-
-3. The image can be changed
-
-4. Included an "Emergency Announcement" section to appear above the image. There is a link button available to turn on or off.
-
-Edit via the appearance -> customize menu. Click into "IMC Homepage"
-
-<br>
-
-How to use:
+How to activate:
 
 Step 1:
 * Create a new page, give it a title of "Homepage" (title doesn't matter, but this will asign it a recognisable slug)
@@ -85,6 +87,22 @@ Step 2
 * Now select "Homepage" as homepage and "Blog" as posts page
 * Now add a menu item called "Latest Posts" to your menu and link to the "Blog" page.
 
+<br>
+
+Notes:
+
+1. Content is editable
+
+2. Included up to 3 buttons
+
+3. The image can be changed
+
+4. Included an "Emergency Announcement" section to appear above the image. There is a link button available to turn on or off.
+
+Edit via the appearance -> customize menu. Click into "IMC Homepage".
+
+Even though I've set things up as defaults, it may be necessary to go in to this menu and click into each item and hit spacebar to change it. Then select publish when all items have been "edited".
+
 
 <br>
 <br>
@@ -92,9 +110,12 @@ Step 2
 ---
 
 
-
-
 ## Footer
+
+How to use: 
+
+This will activate by default. Only links need to be setup and hit spacebar in default labels.
+
 1. Up to three lists. 5 items per list.
 
 2. List header, links and icons are editable.
@@ -105,7 +126,7 @@ Step 2
 
 Edit via appearance -> customize menu -> "IMC Footer"
 
-Benefits: An extra navigation area to decentralize some of the items from the current nav menus. It also looks pretty nice and frames pages better when a website has a good footer. 
+Benefits: An extra navigation area to decentralize some of the items from the current nav menus. It also looks pretty nice and frames pages.
 
 <br>
 <br>
@@ -113,17 +134,17 @@ Benefits: An extra navigation area to decentralize some of the items from the cu
 ---
 
 
-
-
 ## Page Templates
+
+How to use: 
+
+Create a page. Select "tab page" as the "page template". Any pages who have this page set as their parent page will show on this page. Horizontal space is limited by the page titles. The will create a second row if the titles are too long.
+
+<br>
 
 1. Tabbed Pages
 
     Tabbed pages turn into accordions on smaller screens.
-
-<br>
-
-How to use: Create a page. Select "tab page" as the "page template". Any pages who have this page set as their parent page will show on this page. Horizontal space is limited by the page titles. The will create a second row if the titles are too long.
 
 <br>
 
@@ -139,8 +160,6 @@ How to use: Same as tab page but select accordion page as "page template" on par
 <br>
 
 ---
-
-
 
 ## Scroll Arrows
 
@@ -167,6 +186,8 @@ Not much to say about them. They help users scroll to top or bottom for smoother
 
     This allows the site to be "installed" on a phone, like an app. It caches data on the phone to allow smoother browsing. This should speed up site browsing for mobiles significantly aswell as eliminating the address bar and browser menu from the screen. It looks much like a regular phone app. Android users will be prompted to install the site as an app. iPhone users must click share, save to homepage. I've tested this extensively and had a great experience.
 
+    I've included relevant images with sizing to be used in this app should you choose to use it. (just unzip the downloaded folder and go to img folder)
+
 * Deactivate Avatars in Settings
     
     I have removed them from appearing in the forum. The stylesheet impacts page load speed (on every page) and they load an unnessary amount of images to pages they are on, impacting load speed again. Are they really necessary? do people actually use them?
@@ -186,7 +207,11 @@ Not much to say about them. They help users scroll to top or bottom for smoother
 
     These __significantly__ impact page load speed
 
-* Deactivate/Remove BSP plugin for better performance. Anything it does can be coded in very easily and more efficiently. 
+* Deactivate/Remove BSP plugin for better performance. Anything it does can be coded in very easily and more efficiently.
+
+* Ask people to stop uploading large images. (there is a recent 20MB image in a blog post. 100kB to 200kB is the recommended absolute max.)
+
+* Plugins: The Events calendar is the biggest resource hog on the site at the moment. Consider if its possible to use something a little more lightweight. There are a couple of decent calendar plugins.
 
 <br>
 <br>
@@ -200,19 +225,20 @@ Not much to say about them. They help users scroll to top or bottom for smoother
 * Removed dynamic CSS from header. Quicker page load time.
 * Moved scripts to the footer. Quicker page load time.
 * Optimized script/css/plugin loading on homepage, blog page and accordion/tab pages.
-* All inputs in customizer and on pages has been sanitized and validated.
+* Security Note: All inputs in customizer and on pages has been sanitized and validated.
+
 
 <br>
 
 #### Homepage
 
-Images are often the main culprit of a slow page load, especially when users/blog posters don't optimize images before upload (616kB,284kB and 263kB is the largest at the moment). 34 images are downloaded on every page visit (depending on caching etc.) and 34 HTTP requests to the server.
+Images are also the most likely place to get 404 errors. These are the biggest addition to slow page load. Currently 404's are not cached. A static page prevents any of this.
 
-Images are also the most likely place to get 404 errors. These are the biggest addition to slow page load.
+Currently there are approx 65 HTTP requests on the current homepage. This is reduced to about 20 HTTP requests by adding the static homepage.
 
- Currently there are approx 65 HTTP requests including 34 images, plugin stylesheets and javscript files all loading on the current homepage. This has to be processed just to access the site. This is reduced to about 20 HTTP requests and control over what loads on the page by adding the static homepage.
+The login modal prevents having load a new page to login.
 
- There are also aesthetic and UX benefits.
+There are also aesthetic and UX benefits.
 
 <br>
 <br>
@@ -223,7 +249,7 @@ Images are also the most likely place to get 404 errors. These are the biggest a
 
 These pages allow the content of all the pages to be loaded at once. 
 
-It does not trigger a page reload when you want to view another tab. Since text is so small, it gets you 4/5 pages for the price of one with no performance trade off. This is great for mobile browsing. 
+It does not trigger a page reload when you want to view another tab. Since text is so small, it gets you 4/5 pages for the price of one with no performance trade off(just the database queries for each page, which is miniscule). This is great for mobile browsing. 
 
 It looks much better on mobile too and is easier to navigate. It also allows items to be removed from the nav menus and put on one page.
 
@@ -243,9 +269,7 @@ It looks much better on mobile too and is easier to navigate. It also allows ite
 
 ## Styling
 
-Removed options for changing link colors, fonts etc from the appearance -> customize menu. 
-
-These have been included in the CSS for performance reasons and simplicity. They are never changed anyway. IMC logo green and blue is what is used on the site. 
+Removed options for changing link colors, fonts etc from the appearance -> customize menu. These have been included in the CSS for performance reasons and simplicity. They are never changed anyway. IMC logo green and blue is what is used on the site. 
 
 Font sizes can still be changed in posts etc as normal.
 
