@@ -132,10 +132,10 @@ add_action( 'wp_enqueue_scripts', 'move_scripts_to_footer' );
 function dark_mode_cookie($classes){
 
     $themeClass = '';
-        if (!empty($_COOKIE['theme'])) {
-            if ($_COOKIE['theme'] == 'dark') {
+        if (!empty($_COOKIE['custom-theme-color'])) {
+            if ($_COOKIE['custom-theme-color'] == 'dark') {
                 $themeClass = 'darkmode';
-            } else if ($_COOKIE['theme'] == 'light') {
+            } else if ($_COOKIE['custom-theme-color'] == 'light') {
                 $themeClass = '';
         }  
     }

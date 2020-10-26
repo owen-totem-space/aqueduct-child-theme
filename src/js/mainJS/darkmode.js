@@ -27,7 +27,7 @@ function toggleDarkMode() {
             theme = "light";
             btnContent.innerHTML = "<i class='fa fa-moon-o' aria-hidden='true'></i> Dark"
         }
-        document.cookie = `theme=${theme}; max-age=31536000; path=/;`;
+        document.cookie = `custom-theme-color=${theme}; max-age=31536000; path=/;`;
     });
 }
   
