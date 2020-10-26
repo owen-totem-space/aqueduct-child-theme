@@ -4,6 +4,7 @@
 
 <br>
 
+* [How to Install](#how-to-install)
 * [Nav Menus](#nav-menus)
 * [Static Homepage](#static-homepage)
 * [Footer](#footer)
@@ -31,9 +32,11 @@
 
 Select "Code" -> download zip at top of this section. In wordpress admin, go to Appearance -> Themes -> Add New (at top) -> Upload theme (at top) -> Choose File -> upload the zip folder that was downloaded then select activate theme. Voila.
 
+The original Aqueduct theme still needs to be instaleed in wordpress themes. Do not uninstall.
+
 <br>
 
-There will then be a few things to select and activate as listed below.
+There will then be a few things to select and configure as listed below.
 
 <br>
 
@@ -44,7 +47,7 @@ There will then be a few things to select and activate as listed below.
 
 1. Parent menu items should be unclickable
 
-    This is achieved by setting the link to the parent item as "#" and simply adding a label.
+    This is achieved by setting the link to the parent item as "#" and simply adding a label. This is not a link to a page.
 
 2. Parent Item Needs CSS Class
 
@@ -56,7 +59,7 @@ There will then be a few things to select and activate as listed below.
 
         Up to dropdown8
 
-    * This is required to allow dropdown functionality of the sidemenu. It also brings the added benefit of removing users ability to mistakenly click the nav menu label and being brought to a dead/useless page.
+    * This is required to allow dropdown functionality of the sidemenu. 
 
 3. It is no longer possible to have submenus within menus. The menu area of the admin panel will still allow you to add them but they won't work. The side menu wouldn't work with them. Also, with proper menu structure, they shouldn't be necessary.
 
@@ -71,7 +74,7 @@ Note: Please do not add 8 nav menu items. 4-5 should be the max. They may not fi
 
 ## Static Homepage
 
-How to activate:
+How to configure:
 
 Step 1:
 * Create a new page, give it a title of "Homepage" (title doesn't matter, but this will asign it a recognisable slug)
@@ -114,7 +117,7 @@ Even though I've set things up as defaults, it may be necessary to go in to this
 
 How to use: 
 
-This will activate by default. Only links need to be setup and hit spacebar in default labels.
+Go to appearance -> customize -> IMC Footer. For labels, you can just press spacebar in each field to keep defaults. Add links, these can be relative. ie -> "/newsletters" instead of "www.example.com/newsletters"
 
 1. Up to three lists. 5 items per list.
 
@@ -124,7 +127,6 @@ This will activate by default. Only links need to be setup and hit spacebar in d
 
 <br>
 
-Edit via appearance -> customize menu -> "IMC Footer"
 
 Benefits: An extra navigation area to decentralize some of the items from the current nav menus. It also looks pretty nice and frames pages.
 
@@ -138,7 +140,7 @@ Benefits: An extra navigation area to decentralize some of the items from the cu
 
 How to use: 
 
-Create a page. Select "tab page" as the "page template". Any pages who have this page set as their parent page will show on this page. Horizontal space is limited by the page titles. The will create a second row if the titles are too long.
+Create a page. Select "tab page" as the "page template". Any pages who have this page set as their parent page will show on this page. Horizontal space is limited by the page titles. They will create a second row if the titles are too long.
 
 <br>
 
@@ -201,13 +203,17 @@ Not much to say about them. They help users scroll to top or bottom for smoother
 
 * Disable Topic Tags in forum settings
 
+* Remove "Search" sidebar widget.
+
+* Only show last 5 replies in topic/reply widgets.
+
 * Change date to read "10/09/2020" instead of "September 10, 2020", to save screen space
 
 * Fix 404 errors to images loaded on blogs
 
     These __significantly__ impact page load speed
 
-* Deactivate/Remove BSP plugin for better performance. Anything it does can be coded in very easily and more efficiently.
+* Deactivate/Remove BSP plugin for better performance. Anything it does can be coded in very easily and more efficiently. (it isn't doing much, if anything)
 
 * Ask people to stop uploading large images. (there is a recent 20MB image in a blog post. 100kB to 200kB is the recommended absolute max.)
 
@@ -243,7 +249,6 @@ There are also aesthetic and UX benefits.
 <br>
 <br>
 
----
 
 #### Tab/Accordion Pages
 
@@ -251,7 +256,7 @@ These pages allow the content of all the pages to be loaded at once.
 
 It does not trigger a page reload when you want to view another tab. Since text is so small, it gets you 4/5 pages for the price of one with no performance trade off(just the database queries for each page, which is miniscule). This is great for mobile browsing. 
 
-It looks much better on mobile too and is easier to navigate. It also allows items to be removed from the nav menus and put on one page.
+It also allows items to be removed from the nav menus and put on one page.
 
 <br>
 <br>
@@ -260,7 +265,7 @@ It looks much better on mobile too and is easier to navigate. It also allows ite
 
 ## Updating
 
-1. It's possible to push updates from the github repository. This will prompt a theme update in the same way that a wordpress repository theme would. Any issues or additional features can be addressed with updates.
+ It's possible to push updates from the github repository. This will prompt a theme update in the same way that a wordpress repository theme would. Any issues or additional features can be addressed with updates.
 
 <br>
 <br>
